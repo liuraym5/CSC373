@@ -4,6 +4,8 @@ TEX=https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 	git checkout gh-pages
 	git checkout origin/master -- public 
 	pandoc $@.md -t html -s -c splendor.css -o public/$@.html --mathjax=$TEX
+	rm -rf *.md
+	mv public/* .
 	git add .
 	git commit -m 'updated notes'
 	git push origin gh-pages
