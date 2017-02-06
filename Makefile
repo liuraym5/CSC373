@@ -7,4 +7,4 @@ TEX=https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorM
 	git add .
 	git commit -m 'updated notes'
 	git push origin gh-pages
-	git checkout -
+	git checkout master 
