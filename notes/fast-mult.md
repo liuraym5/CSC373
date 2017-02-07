@@ -1,6 +1,6 @@
 ## 2. Fast Multiplication
 
-Our **input** is $ X, Y$, where both are $ n $-digit integers. Our output is $X \times Y$.  
+Our **input** is $ X, Y$, where both are $ n$ -digit integers. Our output is $X \times Y$.  
 The typical algorithm we know for multiplication \(the one taught in grade school\) takes $O(n^2)$ complexity.  
 Kuratsuba's algorithm significantly improves this complexity by trying to limit the amount of multiplication done.
 
