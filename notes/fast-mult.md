@@ -1,11 +1,11 @@
 ## 2. Fast Multiplication
 
-Our **input** is$X, Y$, where both are$n$-digit integers. Our output is$X \times Y$.  
-The typical algorithm we know for multiplication \(the one taught in grade school\) takes$O(n^2)$complexity.  
+Our **input** is $X, Y$, where both are $ n $-digit integers. Our output is $X \times Y$.  
+The typical algorithm we know for multiplication \(the one taught in grade school\) takes $O(n^2)$ complexity.  
 Kuratsuba's algorithm significantly improves this complexity by trying to limit the amount of multiplication done.
 
-Assume$n$is a power of 2, by padding if necessary. Then$n = 2^k$for some$k \in \mathbb N$.  
-Then we can split$X,Y$into two halves, an upper and a lower, so if$X = 1,234,567$, we would write  
+Assume $ n $ is a power of 2, by padding if necessary. Then $ n = 2^k $ for some $ k \in \mathbb N$.  
+Then we can split $X,Y$ into two halves, an upper and a lower, so if $X = 1,234,567$, we would write  
 $X = 01234567, X_1 = 0123, X_2 = 4567$. In this way, we have
 
 
@@ -26,7 +26,7 @@ XY = (10^{\frac{n}{2}}X_1 + X_2) (10^{\frac{n}{2}}Y_1 + Y_2)
 $$
 
 
-Because we are in base 10, multiplication by 10 is an$O(n)$operation, and so we save some time with that.
+Because we are in base 10, multiplication by 10 is an $O(n)$ operation, and so we save some time with that.
 
 ```python
 from math import floor, pow
