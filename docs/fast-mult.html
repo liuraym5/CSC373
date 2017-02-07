@@ -69,12 +69,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     </nav>
   </header>
 <h2 id="fast-multiplication">2. Fast Multiplication</h2>
-<p>Our <strong>input</strong> is $ X, Y $, where both are $ n $-digit integers. Our output is $ X Y $.<br />
-The typical algorithm we know for multiplication (the one taught in grade school) takes $ O(n^2) $ complexity.<br />
+<p>Our <strong>input</strong> is<span class="math inline">\(X, Y\)</span>, where both are<span class="math inline">\(n\)</span>-digit integers. Our output is<span class="math inline">\(X \times Y\)</span>.<br />
+The typical algorithm we know for multiplication (the one taught in grade school) takes<span class="math inline">\(O(n^2)\)</span>complexity.<br />
 Kuratsuba's algorithm significantly improves this complexity by trying to limit the amount of multiplication done.</p>
-<p>Assume $ n $ is a power of 2, by padding if necessary. Then $ n = 2^k $ for some $ k N $.<br />
-Then we can split $ X,Y $ into two halves, an upper and a lower, so if $ X = 1,234,567 $, we would write<br />
-$ X = 01234567, X_1 = 0123, X_2 = 4567 $. In this way, we have</p>
+<p>Assume<span class="math inline">\(n\)</span>is a power of 2, by padding if necessary. Then<span class="math inline">\(n = 2^k\)</span>for some<span class="math inline">\(k \in \mathbb N\)</span>.<br />
+Then we can split<span class="math inline">\(X,Y\)</span>into two halves, an upper and a lower, so if<span class="math inline">\(X = 1,234,567\)</span>, we would write<br />
+<span class="math inline">\(X = 01234567, X_1 = 0123, X_2 = 4567\)</span>. In this way, we have</p>
 <p><span class="math display">\[
 X = 10^{\frac{n}{2}}X_1 + X_2
 \]</span></p>
@@ -84,7 +84,7 @@ Y = 10^{\frac{n}{2}}Y_1 + Y_2
 <p><span class="math display">\[
 XY = (10^{\frac{n}{2}}X_1 + X_2) (10^{\frac{n}{2}}Y_1 + Y_2)
 \]</span></p>
-<p>Because we are in base 10, multiplication by 10 is an $ O(n) $ operation, and so we save some time with that.</p>
+<p>Because we are in base 10, multiplication by 10 is an<span class="math inline">\(O(n)\)</span>operation, and so we save some time with that.</p>
 <div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> math <span class="im">import</span> floor, <span class="bu">pow</span>
 
 
