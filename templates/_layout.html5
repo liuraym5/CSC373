@@ -15,6 +15,7 @@ $if(keywords)$
 $endif$
   <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
   <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
 $if(quotes)$
   <style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
 $endif$
@@ -37,6 +38,23 @@ $for(header-includes)$
 $endfor$
 </head>
 <body>
+  <div class="ml4 mt3 pr4">
+  <header class="w5">
+    <div class="w-60-l w-90-m w-100-l bb bw2 pb1 color-underline ">
+      <span class="f1 baskerville">CSC373</span>
+    </div>
+    <nav class="pv2">
+      <ul class="list pl0 pt0">
+        <li class="dib">
+          <a class="link color-a bb pb0 bw2" href="http://isthisnagee.github.io" >isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+        </li>
+        <li class="dib">
+          <a class="bb pb0 bw2 link color-a" href="mailto:nagee.elghassein@mail.utoronto.ca" >email
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
 $for(include-before)$
 $include-before$
 $endfor$
@@ -63,5 +81,6 @@ $body$
 $for(include-after)$
 $include-after$
 $endfor$
+  </div>
 </body>
 </html>

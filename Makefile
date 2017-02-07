@@ -12,11 +12,12 @@ LATEX=--mathjax=https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS
 all: $(HTML_FILES)
 
 docs/%.html: notes/%.md
-	echo $@
-	echo $<
 	pandoc -s $(TEMPLATE) $(LATEX) $(CSS) -f markdown -t html5 -o $@ $<
 
 # push to gh-pages
 online:
 	git add .
 	git commit -m 'Updated Docs'
+
+clean:
+	rm -rf docs/*.html
