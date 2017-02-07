@@ -18,6 +18,7 @@ docs/%.html: notes/%.md
 online:
 	git add .
 	git commit -m 'Updated Docs'
+	git push
 
 clean:
 	rm -rf docs/*.html
