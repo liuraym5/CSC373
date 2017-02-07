@@ -8,7 +8,13 @@
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
   <link rel="stylesheet" href="css/main.css">
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+  for (var i=0; i < mathElements.length; i++)
+  {
+   var texText = mathElements[i].firstChild
+   katex.render(texText.data, mathElements[i])
+  }}
+  </script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -25,6 +31,9 @@
           <a class="link color-a bb pb0 bw2" href="http://isthisnagee.github.io" >isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
         </li>
         <li class="dib">
+          <a class="link color-a bb pb0 bw2" href="index.html" >csc373</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+        </li>
+        <li class="dib">
           <a class="bb pb0 bw2 link color-a" href="mailto:nagee.elghassein@mail.utoronto.ca" >email
           </a>
         </li>
@@ -35,7 +44,7 @@
 <p>a) <strong>Divide</strong> the n-element sequence into two sorted sequence of sizes n/2 each</p>
 <p>b) <strong>Conquer</strong> by sorting the two subsequences recursively with mergesort</p>
 <p>c) <strong>Combine</strong> by merging the two subsequences together to produce final sorted sequence</p>
-<p>A is an array, p, q, r are indices to the array such that <span class="math display">\[p \leq q \lt r\]</span></p>
+<p>A is an array, p, q, r are indices to the array such that <span class="math display">\displaystyle p \leq q \lt r</span></p>
 <pre><code>public merge(A, p, q, r){
     int n1 = q - p + 1;
     int n2 = r - q;

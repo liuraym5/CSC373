@@ -8,7 +8,13 @@
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
   <link rel="stylesheet" href="css/main.css">
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+  for (var i=0; i < mathElements.length; i++)
+  {
+   var texText = mathElements[i].firstChild
+   katex.render(texText.data, mathElements[i])
+  }}
+  </script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -23,6 +29,9 @@
       <ul class="list pl0 pt0">
         <li class="dib">
           <a class="link color-a bb pb0 bw2" href="http://isthisnagee.github.io" >isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+        </li>
+        <li class="dib">
+          <a class="link color-a bb pb0 bw2" href="index.html" >csc373</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
         </li>
         <li class="dib">
           <a class="bb pb0 bw2 link color-a" href="mailto:nagee.elghassein@mail.utoronto.ca" >email
@@ -50,10 +59,10 @@ intervals over one point in the timeline</p>
     |-----=---|------|
       |---=|
           ^ depth of 3</code></pre>
-<p>We claim that the <span class="math inline">\(d\)</span> we will return satisfies</p>
-<p><span class="math display">\[
+<p>We claim that the <span class="math inline">d</span> we will return satisfies</p>
+<p><span class="math display">\displaystyle 
 d \geq \text{depth}(A)
-\]</span></p>
+</span></p>
 <p>Surprisingly, $ (A) = d $. This is achieved by the greedy algorithm we will<br />
 display below.</p>
 <pre><code>// javascript

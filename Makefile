@@ -4,9 +4,9 @@ MD_FILES:=$(wildcard notes/*.md)
 HTML_FILES:=$(addprefix docs/,$(notdir $(MD_FILES:.md=.html)))
 
 # pandoc stuff
-CSS=--css=css/main.css
+CSS=--css=css/main.css --katex-stylesheet=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css
 TEMPLATE=--template=templates/_layout
-LATEX=--mathjax=https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML 
+LATEX=--katex=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js
 
 # notes/*.md -> docs/*.html
 all: $(HTML_FILES)

@@ -8,7 +8,13 @@
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
   <link rel="stylesheet" href="css/main.css">
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+  for (var i=0; i < mathElements.length; i++)
+  {
+   var texText = mathElements[i].firstChild
+   katex.render(texText.data, mathElements[i])
+  }}
+  </script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -25,6 +31,9 @@
           <a class="link color-a bb pb0 bw2" href="http://isthisnagee.github.io" >isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
         </li>
         <li class="dib">
+          <a class="link color-a bb pb0 bw2" href="index.html" >csc373</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+        </li>
+        <li class="dib">
           <a class="bb pb0 bw2 link color-a" href="mailto:nagee.elghassein@mail.utoronto.ca" >email
           </a>
         </li>
@@ -34,7 +43,7 @@
 <h1 id="tiling">4. Tiling</h1>
 <p><a href="http://www.geeksforgeeks.org/divide-and-conquer-set-6-tiling-problem/" class="uri">http://www.geeksforgeeks.org/divide-and-conquer-set-6-tiling-problem/</a></p>
 <p><strong>Input:</strong></p>
-<p><span class="math inline">\(n * n\)</span> chessboard. <span class="math inline">\(n = 2^{k}, k \geq 1\)</span></p>
+<p><span class="math inline">n * n</span> chessboard. <span class="math inline">n = 2^{k}, k \geq 1</span></p>
 <p>1 square is removed</p>
 <p><strong>Output:</strong></p>
 <p>Valid L-tiling of the board</p>

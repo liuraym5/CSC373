@@ -8,7 +8,13 @@
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
   <link rel="stylesheet" href="css/main.css">
-  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+  for (var i=0; i < mathElements.length; i++)
+  {
+   var texText = mathElements[i].firstChild
+   katex.render(texText.data, mathElements[i])
+  }}
+  </script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -25,6 +31,9 @@
           <a class="link color-a bb pb0 bw2" href="http://isthisnagee.github.io" >isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
         </li>
         <li class="dib">
+          <a class="link color-a bb pb0 bw2" href="index.html" >csc373</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+        </li>
+        <li class="dib">
           <a class="bb pb0 bw2 link color-a" href="mailto:nagee.elghassein@mail.utoronto.ca" >email
           </a>
         </li>
@@ -32,22 +41,22 @@
     </nav>
   </header>
 <h2 id="fast-multiplication">2. Fast Multiplication</h2>
-<p>Our <strong>input</strong> is $ X, Y$, where both are <span class="math inline">\(n\)</span> -digit integers. Our output is <span class="math inline">\(X \times Y\)</span>.<br />
-The typical algorithm we know for multiplication (the one taught in grade school) takes <span class="math inline">\(O(n^2)\)</span> complexity.<br />
+<p>Our <strong>input</strong> is $ X, Y$, where both are <span class="math inline">n</span> -digit integers. Our output is <span class="math inline">X \times Y</span>.<br />
+The typical algorithm we know for multiplication (the one taught in grade school) takes <span class="math inline">O(n^2)</span> complexity.<br />
 Kuratsuba's algorithm significantly improves this complexity by trying to limit the amount of multiplication done.</p>
 <p>Assume $ n $ is a power of 2, by padding if necessary. Then $ n = 2^k $ for some $ k N$.<br />
-Then we can split <span class="math inline">\(X,Y\)</span> into two halves, an upper and a lower, so if <span class="math inline">\(X = 1,234,567\)</span>, we would write<br />
-<span class="math inline">\(X = 01234567, X_1 = 0123, X_2 = 4567\)</span>. In this way, we have</p>
-<p><span class="math display">\[
+Then we can split <span class="math inline">X,Y</span> into two halves, an upper and a lower, so if <span class="math inline">X = 1,234,567</span>, we would write<br />
+<span class="math inline">X = 01234567, X_1 = 0123, X_2 = 4567</span>. In this way, we have</p>
+<p><span class="math display">\displaystyle 
 X = 10^{\frac{n}{2}}X_1 + X_2
-\]</span></p>
-<p><span class="math display">\[
+</span></p>
+<p><span class="math display">\displaystyle 
 Y = 10^{\frac{n}{2}}Y_1 + Y_2
-\]</span></p>
-<p><span class="math display">\[
+</span></p>
+<p><span class="math display">\displaystyle 
 XY = (10^{\frac{n}{2}}X_1 + X_2) (10^{\frac{n}{2}}Y_1 + Y_2)
-\]</span></p>
-<p>Because we are in base 10, multiplication by 10 is an <span class="math inline">\(O(n)\)</span> operation, and so we save some time with that.</p>
+</span></p>
+<p>Because we are in base 10, multiplication by 10 is an <span class="math inline">O(n)</span> operation, and so we save some time with that.</p>
 <pre><code>from math import floor, pow
 
 
