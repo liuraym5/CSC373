@@ -7,43 +7,6 @@
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
-  <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-  </style>
   <link rel="stylesheet" href="css/main.css">
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
   <!--[if lt IE 9]>
@@ -93,25 +56,25 @@ d \geq \text{depth}(A)
 \]</span></p>
 <p>Surprisingly, $ (A) = d $. This is achieved by the greedy algorithm we will<br />
 display below.</p>
-<div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">// javascript</span>
-<span class="kw">function</span> <span class="at">machineNumber</span>(A<span class="op">,</span> n) <span class="op">{</span>
-  <span class="va">A</span>.<span class="at">sort</span>( (s1<span class="op">,</span>s2) <span class="op">=&gt;</span> <span class="va">s1</span>.<span class="at">start</span> <span class="op">-</span> <span class="va">s2</span>.<span class="at">start</span> )
-  <span class="kw">let</span> M <span class="op">=</span> [] <span class="co">// should have size n</span>
-  M[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">1</span>
-  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">2</span><span class="op">;</span> i <span class="op">&lt;</span> n<span class="op">;</span> i<span class="op">++</span>) <span class="op">{</span>
-    <span class="kw">let</span> S <span class="op">=</span> []
-    <span class="cf">for</span> (<span class="kw">let</span> j <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> j <span class="op">&lt;</span> i <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> j<span class="op">++</span>) <span class="op">{</span>
-      <span class="cf">if</span> (<span class="at">overlap</span>(A[j]<span class="op">,</span> A[i])) <span class="op">{</span>
-        <span class="va">S</span>.<span class="at">push</span>(M[j])
-      <span class="op">}</span>
-    <span class="op">}</span>
-    <span class="kw">const</span> minS <span class="op">=</span> <span class="va">Math</span>.<span class="va">min</span>.<span class="at">apply</span>(S)
-    <span class="co">// smallest natural number not in S, assuming N = 1,2,...</span>
-    <span class="kw">const</span> min <span class="op">=</span> minS <span class="op">&lt;</span> <span class="dv">2</span> <span class="op">:</span> <span class="dv">1</span> <span class="op">?</span> minS<span class="op">--</span>
-    M[i] <span class="op">=</span> min
+<pre><code>// javascript
+function machineNumber(A, n) {
+  A.sort( (s1,s2) =&gt; s1.start - s2.start )
+  let M = [] // should have size n
+  M[1] = 1
+  for (let i = 2; i &lt; n; i++) {
+    let S = []
+    for (let j = 1; j &lt; i - 1; j++) {
+      if (overlap(A[j], A[i])) {
+        S.push(M[j])
+      }
+    }
+    const minS = Math.min.apply(S)
+    // smallest natural number not in S, assuming N = 1,2,...
+    const min = minS &lt; 2 : 1 ? minS--
+    M[i] = min
   }
-  <span class="cf">return</span> <span class="va">Math</span>.<span class="va">max</span>.<span class="at">apply</span>(M)
-}</code></pre></div>
+  return Math.max.apply(M)
+}</code></pre>
   </div>
 </body>
 </html>

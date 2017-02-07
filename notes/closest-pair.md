@@ -10,7 +10,7 @@ Ouput: Array of two points that have the closest distance
 
 Go through every single pair of points, find the one pair with the smallest distance
 
-```java
+```
 public Point[] closestPoints(Point[] points){
     double closestDistance = Double.MAX_VALUE;
     Point[] result = new Point[2];

@@ -15,7 +15,7 @@ Output: \# of inversions of A
 
 Trivial algo: Consider all pairs O\(n^2\) time
 
-```java
+```
 public int countInversionBrute(int[] A){
     int inversions = 0;
     for (int i = 0; i < A.length - 1; i++){

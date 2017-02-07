@@ -7,43 +7,6 @@
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
-  <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-  </style>
   <link rel="stylesheet" href="css/main.css">
   <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
   <!--[if lt IE 9]>
@@ -85,75 +48,75 @@ Y = 10^{\frac{n}{2}}Y_1 + Y_2
 XY = (10^{\frac{n}{2}}X_1 + X_2) (10^{\frac{n}{2}}Y_1 + Y_2)
 \]</span></p>
 <p>Because we are in base 10, multiplication by 10 is an <span class="math inline">\(O(n)\)</span> operation, and so we save some time with that.</p>
-<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> math <span class="im">import</span> floor, <span class="bu">pow</span>
+<pre><code>from math import floor, pow
 
 
-<span class="co"># get the nearest power of 2</span>
-<span class="kw">def</span> power2(num):
-    <span class="cf">return</span> <span class="dv">1</span> <span class="op">&lt;&lt;</span> (num<span class="dv">-1</span>).bit_length()
+# get the nearest power of 2
+def power2(num):
+    return 1 &lt;&lt; (num-1).bit_length()
 
 
-<span class="kw">def</span> mult(x, y):
-    str_x <span class="op">=</span> <span class="bu">str</span>(x)
-    str_y <span class="op">=</span> <span class="bu">str</span>(y)
+def mult(x, y):
+    str_x = str(x)
+    str_y = str(y)
 
-    len_x <span class="op">=</span> <span class="bu">len</span>(str_x)
-    len_y <span class="op">=</span> <span class="bu">len</span>(str_y)
+    len_x = len(str_x)
+    len_y = len(str_y)
 
-    <span class="co"># pad the lesser to make them both the same size</span>
-    <span class="cf">if</span> len_x <span class="op">&lt;=</span> len_y:
-        str_x <span class="op">=</span> <span class="st">&quot;0&quot;</span><span class="op">*</span>(len_y <span class="op">-</span> len_x) <span class="op">+</span> str_x
-        <span class="co"># update the length</span>
-        len_x <span class="op">=</span> <span class="bu">len</span>(str_x)
-    <span class="cf">else</span>:
-        str_y <span class="op">=</span> <span class="st">&quot;0&quot;</span><span class="op">*</span>(len_x <span class="op">-</span> len_y) <span class="op">+</span> str_y
-        <span class="co"># update the length</span>
-        len_y <span class="op">=</span> <span class="bu">len</span>(str_y)
+    # pad the lesser to make them both the same size
+    if len_x &lt;= len_y:
+        str_x = &quot;0&quot;*(len_y - len_x) + str_x
+        # update the length
+        len_x = len(str_x)
+    else:
+        str_y = &quot;0&quot;*(len_x - len_y) + str_y
+        # update the length
+        len_y = len(str_y)
 
-    <span class="co"># find the nearest power of two, since we</span>
-    <span class="co"># adjusted the length, it doesn&#39;t matter if we use</span>
-    <span class="co"># `len_x` or `len_y`</span>
-    padding <span class="op">=</span> power2(len_x) <span class="op">-</span> len_x
-    str_x <span class="op">=</span> <span class="st">&quot;0&quot;</span><span class="op">*</span>padding <span class="op">+</span> str_x
-    str_y <span class="op">=</span> <span class="st">&quot;0&quot;</span><span class="op">*</span>padding <span class="op">+</span> str_y
+    # find the nearest power of two, since we
+    # adjusted the length, it doesn&#39;t matter if we use
+    # `len_x` or `len_y`
+    padding = power2(len_x) - len_x
+    str_x = &quot;0&quot;*padding + str_x
+    str_y = &quot;0&quot;*padding + str_y
 
-    len_x <span class="op">=</span> <span class="bu">len</span>(str_x)
-    len_y <span class="op">=</span> <span class="bu">len</span>(str_y)
+    len_x = len(str_x)
+    len_y = len(str_y)
 
-    n <span class="op">=</span> len_x
+    n = len_x
 
-    <span class="cf">if</span> n <span class="op">==</span> <span class="dv">1</span>:
-        <span class="cf">return</span> x <span class="op">*</span> y
+    if n == 1:
+        return x * y
 
-    x_arr <span class="op">=</span> [ch <span class="cf">for</span> ch <span class="kw">in</span> str_x]
-    y_arr <span class="op">=</span> [ch <span class="cf">for</span> ch <span class="kw">in</span> str_y]
+    x_arr = [ch for ch in str_x]
+    y_arr = [ch for ch in str_y]
 
-    middle <span class="op">=</span> <span class="bu">int</span>(floor(n <span class="op">/</span> <span class="dv">2</span>))
+    middle = int(floor(n / 2))
 
-    _X1 <span class="op">=</span> x_arr[:middle]
-    _X2 <span class="op">=</span> x_arr[middle:]
+    _X1 = x_arr[:middle]
+    _X2 = x_arr[middle:]
 
-    _Y1 <span class="op">=</span> y_arr[<span class="dv">0</span>:middle]
-    _Y2 <span class="op">=</span> y_arr[middle:]
+    _Y1 = y_arr[0:middle]
+    _Y2 = y_arr[middle:]
 
-    X1 <span class="op">=</span> _X1 <span class="cf">if</span> _X1 <span class="cf">else</span> [<span class="st">&quot;0&quot;</span>]
-    X2 <span class="op">=</span> _X2 <span class="cf">if</span> _X2 <span class="cf">else</span> [<span class="st">&quot;0&quot;</span>]
-    Y1 <span class="op">=</span> _Y1 <span class="cf">if</span> _Y1 <span class="cf">else</span> [<span class="st">&quot;0&quot;</span>]
-    Y2 <span class="op">=</span> _Y2 <span class="cf">if</span> _Y2 <span class="cf">else</span> [<span class="st">&quot;0&quot;</span>]
+    X1 = _X1 if _X1 else [&quot;0&quot;]
+    X2 = _X2 if _X2 else [&quot;0&quot;]
+    Y1 = _Y1 if _Y1 else [&quot;0&quot;]
+    Y2 = _Y2 if _Y2 else [&quot;0&quot;]
 
-    x1 <span class="op">=</span> <span class="bu">int</span>(<span class="st">&quot;&quot;</span>.join(X1))
-    x2 <span class="op">=</span> <span class="bu">int</span>(<span class="st">&quot;&quot;</span>.join(X2))
+    x1 = int(&quot;&quot;.join(X1))
+    x2 = int(&quot;&quot;.join(X2))
 
-    y1 <span class="op">=</span> <span class="bu">int</span>(<span class="st">&quot;&quot;</span>.join(Y1))
-    y2 <span class="op">=</span> <span class="bu">int</span>(<span class="st">&quot;&quot;</span>.join(Y2))
+    y1 = int(&quot;&quot;.join(Y1))
+    y2 = int(&quot;&quot;.join(Y2))
 
-    A <span class="op">=</span> mult(x1, y1)
-    B <span class="op">=</span> mult(x2, y2)
-    t1 <span class="op">=</span> x1 <span class="op">+</span> x2
-    t2 <span class="op">=</span> y1 <span class="op">+</span> y2
-    C <span class="op">=</span> mult(t1, t2)
+    A = mult(x1, y1)
+    B = mult(x2, y2)
+    t1 = x1 + x2
+    t2 = y1 + y2
+    C = mult(t1, t2)
 
-    <span class="cf">return</span> <span class="bu">int</span>(<span class="bu">pow</span>(<span class="dv">10</span>, n) <span class="op">*</span> A <span class="op">+</span> <span class="bu">pow</span>(<span class="dv">10</span>, middle) <span class="op">*</span> (C <span class="op">-</span> A <span class="op">-</span> B) <span class="op">+</span></code></pre></div>
+    return int(pow(10, n) * A + pow(10, middle) * (C - A - B) +</code></pre>
 <p>Testing the above gives the following output:</p>
 <pre><code>test
 11 * 21 = 231 = mult(11, 21) = 231

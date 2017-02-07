@@ -28,7 +28,7 @@ $$
 
 Because we are in base 10, multiplication by 10 is an $O(n)$ operation, and so we save some time with that.
 
-```python
+```
 from math import floor, pow
 
 

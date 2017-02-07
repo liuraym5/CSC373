@@ -45,7 +45,7 @@ display below.
 
 
 
-```javascript
+```
 // javascript
 function machineNumber(A, n) {
   A.sort( (s1,s2) => s1.start - s2.start )
