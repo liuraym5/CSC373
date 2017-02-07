@@ -12,17 +12,17 @@ Goal: Minimize the number of colors used.
 
 We augment the interval coloring problem so that instead of getting the minimum  
 number of colors, we try to find the minimum number of machines so that intervals  
-running on the $$ i $$th machine do not intersect \(each machine gets non-intersecting processes\).
+running on the $ i $th machine do not intersect \(each machine gets non-intersecting processes\).
 
 #### Input:
 
-An array $$ A $$ of $$ n \geq 1 $$ intervals.
+An array $ A $ of $ n \geq 1 $ intervals.
 
 #### Output:
 
-$$ d \in \mathbb{N} $$ so that all intervals running on
+$ d \in \mathbb{N} $ so that all intervals running on
 
-**Def**: $$ \text{depth}(A) $$ is called the depth of $$ A $$, and is the maximum number of  
+**Def**: $ \text{depth}(A) $ is called the depth of $ A $, and is the maximum number of  
 intervals over one point in the timeline
 
 ```
@@ -32,7 +32,7 @@ intervals over one point in the timeline
           ^ depth of 3
 ```
 
-We claim that the $$d$$ we will return satisfies
+We claim that the $d$ we will return satisfies
 
 
 $$
@@ -40,7 +40,7 @@ d \geq \text{depth}(A)
 $$
 
 
-Surprisingly, $$ \text{depth}(A) = d $$. This is achieved by the greedy algorithm we will  
+Surprisingly, $ \text{depth}(A) = d $. This is achieved by the greedy algorithm we will  
 display below.
 
 

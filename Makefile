@@ -16,6 +16,7 @@ docs/%.html: notes/%.md
 
 # push to gh-pages
 online:
+	make
 	git add .
 	git commit -m 'Updated Docs'
 	git push

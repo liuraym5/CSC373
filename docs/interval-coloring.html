@@ -76,22 +76,22 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h2 id="machine-minimization">Machine Minimization</h2>
 <p>We augment the interval coloring problem so that instead of getting the minimum<br />
 number of colors, we try to find the minimum number of machines so that intervals<br />
-running on the <span class="math display">\[ i \]</span>th machine do not intersect (each machine gets non-intersecting processes).</p>
+running on the $ i $th machine do not intersect (each machine gets non-intersecting processes).</p>
 <h4 id="input">Input:</h4>
-<p>An array <span class="math display">\[ A \]</span> of <span class="math display">\[ n \geq 1 \]</span> intervals.</p>
+<p>An array $ A $ of $ n 1 $ intervals.</p>
 <h4 id="output">Output:</h4>
-<p><span class="math display">\[ d \in \mathbb{N} \]</span> so that all intervals running on</p>
-<p><strong>Def</strong>: <span class="math display">\[ \text{depth}(A) \]</span> is called the depth of <span class="math display">\[ A \]</span>, and is the maximum number of<br />
+<p>$ d  $ so that all intervals running on</p>
+<p><strong>Def</strong>: $ (A) $ is called the depth of $ A $, and is the maximum number of<br />
 intervals over one point in the timeline</p>
 <pre><code>|-------||=-----||------|
     |-----=---|------|
       |---=|
           ^ depth of 3</code></pre>
-<p>We claim that the <span class="math display">\[d\]</span> we will return satisfies</p>
+<p>We claim that the <span class="math inline">\(d\)</span> we will return satisfies</p>
 <p><span class="math display">\[
 d \geq \text{depth}(A)
 \]</span></p>
-<p>Surprisingly, <span class="math display">\[ \text{depth}(A) = d \]</span>. This is achieved by the greedy algorithm we will<br />
+<p>Surprisingly, $ (A) = d $. This is achieved by the greedy algorithm we will<br />
 display below.</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="co">// javascript</span>
 <span class="kw">function</span> <span class="at">machineNumber</span>(A<span class="op">,</span> n) <span class="op">{</span>

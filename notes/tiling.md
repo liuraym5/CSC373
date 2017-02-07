@@ -4,7 +4,7 @@
 
 **Input:**
 
-$$n * n$$ chessboard. $$n = 2^{k}, k \geq 1$$
+$n * n$ chessboard. $n = 2^{k}, k \geq 1$
 
 1 square is removed
 

@@ -89,20 +89,20 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
     }
     <span class="kw">return</span> result;
 }</code></pre></div>
-<p>This algorithm has the time complexity of <span class="math display">\[O(n^{2})\]</span></p>
+<p>This algorithm has the time complexity of <span class="math inline">\(O(n^{2})\)</span></p>
 <h2 id="faster-approach">Faster Approach</h2>
 <p>a) <strong>Divide </strong>the points with a line that is the median of the x coordinate of all points</p>
 <p>b) <strong>Conquer </strong>by finding the closest distance of pairs in each side</p>
 <p>c) <strong>Combine </strong>by picking the least distance out of the closest distance in left, right and <strong>two points separated by the line</strong>.</p>
-<p>Problem - Combining is expensive. We have to compare results of i) LHS closest pair ii) RHS closest pair iii) Pairs of points with one from LHS and one from RHS. This takes <span class="math display">\[O(n^{2})\]</span>.</p>
+<p>Problem - Combining is expensive. We have to compare results of i) LHS closest pair ii) RHS closest pair iii) Pairs of points with one from LHS and one from RHS. This takes <span class="math inline">\(O(n^{2})\)</span>.</p>
 <p><strong>Goal - Improve iii)</strong></p>
-<p>Given n points <span class="math display">\[P = \{P1, P2, ..., Pn\}\]</span>, compute</p>
-<p><span class="math display">\[Px\]</span>, <span class="math display">\[P\]</span> sorted by x coordinate, <span class="math display">\[Py\]</span>, <span class="math display">\[P\]</span> sorted by y coordinate</p>
-<p>Divide <span class="math display">\[P\]</span> by vertical line <span class="math display">\[l\]</span> into equal size sets <span class="math display">\[Q, R\]</span>.</p>
-<p>Let <span class="math display">\[dQ\]</span> be the closest distance in <span class="math display">\[Q\]</span> and <span class="math display">\[dR\]</span> be the closest distance in <span class="math display">\[R\]</span>.</p>
-<p>Let <span class="math display">\[d = min \{dQ, dR\}\]</span></p>
-<p>Throw away all points out of <span class="math display">\[l \pm d\]</span>.</p>
-<p>Claim: If there exists a pair of points <span class="math display">\[p&#39;\]</span>, <span class="math display">\[p&#39;&#39;\]</span> with <span class="math display">\[d(p&#39;, p&#39;&#39;) \leq d\]</span>, <span class="math display">\[p&#39;\]</span> and <span class="math display">\[p&#39;&#39;\]</span> appear within 9 positions in <span class="math display">\[P_{y}\]</span>.</p>
+<p>Given n points <span class="math inline">\(P = \{P1, P2, ..., Pn\}\)</span>, compute</p>
+<p><span class="math inline">\(Px\)</span>, <span class="math inline">\(P\)</span> sorted by x coordinate, <span class="math inline">\(Py\)</span>, <span class="math inline">\(P\)</span> sorted by y coordinate</p>
+<p>Divide <span class="math inline">\(P\)</span> by vertical line <span class="math inline">\(l\)</span> into equal size sets <span class="math inline">\(Q, R\)</span>.</p>
+<p>Let <span class="math inline">\(dQ\)</span> be the closest distance in <span class="math inline">\(Q\)</span> and <span class="math inline">\(dR\)</span> be the closest distance in <span class="math inline">\(R\)</span>.</p>
+<p>Let <span class="math inline">\(d = min \{dQ, dR\}\)</span></p>
+<p>Throw away all points out of <span class="math inline">\(l \pm d\)</span>.</p>
+<p>Claim: If there exists a pair of points <span class="math inline">\(p&#39;\)</span>, <span class="math inline">\(p&#39;&#39;\)</span> with <span class="math inline">\(d(p&#39;, p&#39;&#39;) \leq d\)</span>, <span class="math inline">\(p&#39;\)</span> and <span class="math inline">\(p&#39;&#39;\)</span> appear within 9 positions in <span class="math inline">\(P_{y}\)</span>.</p>
 <pre><code>l - d      l      l + d
   |        |        |
   |        x--------x
@@ -168,7 +168,7 @@ closestPairHelper(X, Y, n)
                 (p&#39;, p&#39;&#39;) = (Y&#39;[k], Y&#39;[j])
     
     return (p&#39;, p&#39;&#39;)</code></pre>
-<p>Final recurrence is <span class="math display">\[T(n) = 2T(n/2) + O(n) = O(log n)\]</span></p>
+<p>Final recurrence is <span class="math inline">\(T(n) = 2T(n/2) + O(n) = O(log n)\)</span></p>
   </div>
 </body>
 </html>

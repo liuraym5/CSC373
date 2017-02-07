@@ -28,7 +28,7 @@ public Point[] closestPoints(Point[] points){
 }
 ```
 
-This algorithm has the time complexity of $$O(n^{2})$$
+This algorithm has the time complexity of $O(n^{2})$
 
 ## Faster Approach
 
@@ -38,23 +38,23 @@ b\) **Conquer **by finding the closest distance of pairs in each side
 
 c\) **Combine **by picking the least distance out of the closest distance in left, right and **two points separated by the line**.
 
-Problem - Combining is expensive. We have to compare results of i\) LHS closest pair ii\) RHS closest pair iii\) Pairs of points with one from LHS and one from RHS. This takes $$O(n^{2})$$.
+Problem - Combining is expensive. We have to compare results of i\) LHS closest pair ii\) RHS closest pair iii\) Pairs of points with one from LHS and one from RHS. This takes $O(n^{2})$.
 
 **Goal - Improve iii\)**
 
-Given n points $$P = \{P1, P2, ..., Pn\}$$, compute
+Given n points $P = \{P1, P2, ..., Pn\}$, compute
 
-$$Px$$, $$P$$ sorted by x coordinate, $$Py$$, $$P$$ sorted by y coordinate
+$Px$, $P$ sorted by x coordinate, $Py$, $P$ sorted by y coordinate
 
-Divide $$P$$ by vertical line $$l$$ into equal size sets $$Q, R$$.
+Divide $P$ by vertical line $l$ into equal size sets $Q, R$.
 
-Let $$dQ$$ be the closest distance in $$Q$$ and $$dR$$ be the closest distance in $$R$$.
+Let $dQ$ be the closest distance in $Q$ and $dR$ be the closest distance in $R$.
 
-Let $$d = min \{dQ, dR\}$$
+Let $d = min \{dQ, dR\}$
 
-Throw away all points out of $$l \pm d$$.
+Throw away all points out of $l \pm d$.
 
-Claim: If there exists a pair of points $$p'$$, $$p''$$ with $$d(p', p'') \leq d$$, $$p'$$ and $$p''$$ appear within 9 positions in $$P_{y}$$.
+Claim: If there exists a pair of points $p'$, $p''$ with $d(p', p'') \leq d$, $p'$ and $p''$ appear within 9 positions in $P_{y}$.
 
 ```
 l - d      l      l + d
@@ -129,5 +129,5 @@ closestPairHelper(X, Y, n)
     return (p', p'')
 ```
 
-Final recurrence is $$T(n) = 2T(n/2) + O(n) = O(log n)$$
+Final recurrence is $T(n) = 2T(n/2) + O(n) = O(log n)$
 
