@@ -38,6 +38,11 @@
             </li>
           </ul>
         </nav>
+        $if(title)$
+        <div class="w5">
+        <h2 class="w-80 f3 bb bw1 pb1">$title$</h2>
+        </div>
+        $endif$
       </header>
       $body$
       $for(include-after)$

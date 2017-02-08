@@ -12,7 +12,7 @@ LATEX=--katex=https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js
 all: $(HTML_FILES)
 
 docs/%.html: notes/%.md
-	pandoc -s $(TEMPLATE) $(LATEX) $(CSS) -f markdown -t html5 -o $@ $<
+	pandoc -s $(TEMPLATE) $(LATEX) $(CSS) -f markdown+emoji -t html5 -o $@ $<
 
 # push to gh-pages
 online:
