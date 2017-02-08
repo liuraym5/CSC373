@@ -11,11 +11,9 @@
     <style type="text/css">q { quotes: "“" "”" "‘" "’"; }</style>
     $endif$
     $for(css)$
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css" type="text/css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="$css$">
     $endfor$
-    <link rel="stylesheet"
-    href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"
-    type="text/css" media="screen" charset="utf-8">
     $if(math)$
       $math$
     $endif$
