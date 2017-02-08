@@ -587,10 +587,12 @@ a:hover   {
   color: #001f3f;
   transition: color .15s ease-in;
 }
-a:active  {
-  transition: color .15s ease-in;
-}
 a:focus   {
   transition: color .15s ease-in;
   outline: 1px dotted currentColor;
 }
+a:active  {
+  transition: color .15s ease-in;
+}
+
+
