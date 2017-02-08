@@ -1,64 +1,58 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
-  <link rel="stylesheet" href="css/main.css">
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-  <div class="ml4 mt3 pr4">
-  <header class="w5">
-    <div class="w-60-l w-90-m w-100-l bb bw2 pb1 color-underline ">
-      <span class="f1 baskerville">CSC373</span>
-    </div>
-    <nav class="pv2">
-      <ul class="list pl0 pt0">
-        <li class="dib">
-          <a class="link color-a bb pb0 bw2" href="http://isthisnagee.github.io" >isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
-        </li>
-        <li class="dib">
-          <a class="link color-a bb pb0 bw2" href="index.html" >csc373</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
-        </li>
-        <li class="dib">
-          <a class="bb pb0 bw2 link color-a" href="mailto:nagee.elghassein@mail.utoronto.ca" >email
-          </a>
-        </li>
+  <head>
+    <meta charset="utf-8">
+    <title>CSC373</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet"
+    href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"
+    type="text/css" media="screen" charset="utf-8">
+          </head>
+  <body>
+    <div class="ml4 mt3 pr4 ">
+      <header class="w6">
+        <div class="w-80-m w-100-ns bb bw2 pb1">
+          <span class="f1 baskerville">isthisnagee</span>
+        </div>
+        <nav class="pv2 f5">
+          <ul class="list pl0 pt0">
+            <li class="dib">
+              <a class="link pointer color-a bb pb0 bw2 space-mono b--gray" href="http://isthisnagee.github.io">isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+            </li>
+            <li class="dib">
+              <a class="pointer bb pb0 bw2 link color-a space-mono b--gray" href="index.html">csc373
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <h1 id="counting-inversions">Counting Inversions</h1>
+      <p><em><strong>Inversion Count</strong></em></p>
+      <p>for an array indicates – how far (or close) the array is from being sorted. If array is already sorted then inversion count is 0. If array is sorted in reverse order that inversion count is the maximum. </p>
+      <p>Def: An array of n ints (i, j) is an inversion if</p>
+      <ul>
+      <li>i &lt; j</li>
+      <li>A[i] &gt; A[j]</li>
       </ul>
-    </nav>
-  </header>
-<h1 id="counting-inversions">5. Counting Inversions</h1>
-<p><em><strong>Inversion Count</strong></em></p>
-<p>for an array indicates – how far (or close) the array is from being sorted. If array is already sorted then inversion count is 0. If array is sorted in reverse order that inversion count is the maximum. </p>
-<p>Def: An array of n ints (i, j) is an inversion if</p>
-<ul>
-<li>i &lt; j</li>
-<li>A[i] &gt; A[j]</li>
-</ul>
-<p>Input: A array of n ints</p>
-<p>Output: # of inversions of A</p>
-<p>Trivial algo: Consider all pairs O(n^2) time</p>
-<pre><code>public int countInversionBrute(int[] A){
-    int inversions = 0;
-    for (int i = 0; i &lt; A.length - 1; i++){
-        for (int j = i + 1; j &lt; A.length; j++){
-            if (A[i] &gt; A[j]){
-                inversions++;
-            }
-        }
-    }
-    return inversions;
-}</code></pre>
-<p><strong>Divide and Conquer:</strong></p>
-<p>Key Idea: Sort and count</p>
-<p>Suppose we know the number of inversions in the left half and right half of the array (let be inv1 and inv2), what kinds of inversions are not accounted for in Inv1 + Inv2? The answer is – the inversions we have to count during the merge step. Therefore, to get number of inversions, we need to add number of inversions in left subarray, right subarray and merge().</p>
-<p>Runtime is O(nlogn)</p>
-  </div>
-</body>
+      <p>Input: A array of n ints</p>
+      <p>Output: # of inversions of A</p>
+      <p>Trivial algo: Consider all pairs O(n^2) time</p>
+      <pre><code>public int countInversionBrute(int[] A){
+          int inversions = 0;
+          for (int i = 0; i &lt; A.length - 1; i++){
+              for (int j = i + 1; j &lt; A.length; j++){
+                  if (A[i] &gt; A[j]){
+                      inversions++;
+                  }
+              }
+          }
+          return inversions;
+      }</code></pre>
+      <p><strong>Divide and Conquer:</strong></p>
+      <p>Key Idea: Sort and count</p>
+      <p>Suppose we know the number of inversions in the left half and right half of the array (let be inv1 and inv2), what kinds of inversions are not accounted for in Inv1 + Inv2? The answer is – the inversions we have to count during the merge step. Therefore, to get number of inversions, we need to add number of inversions in left subarray, right subarray and merge().</p>
+      <p>Runtime is O(nlogn)</p>
+          </div>   
+  </body>
 </html>

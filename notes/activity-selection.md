@@ -1,4 +1,4 @@
-## 1. Activity Selection
+## Activity Selection
 
 Further readings: [http://web.mst.edu/~silvestris/teaching/algorithmsFall2014/notes/greedy\_proof.pdf](http://web.mst.edu/~silvestris/teaching/algorithmsFall2014/notes/greedy\_proof.pdf)
 

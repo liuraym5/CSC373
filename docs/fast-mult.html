@@ -1,136 +1,130 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
-  <link rel="stylesheet" href="css/main.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
-  for (var i=0; i < mathElements.length; i++)
-  {
-   var texText = mathElements[i].firstChild
-   katex.render(texText.data, mathElements[i])
-  }}
-  </script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-  <div class="ml4 mt3 pr4">
-  <header class="w5">
-    <div class="w-60-l w-90-m w-100-l bb bw2 pb1 color-underline ">
-      <span class="f1 baskerville">CSC373</span>
-    </div>
-    <nav class="pv2">
-      <ul class="list pl0 pt0">
-        <li class="dib">
-          <a class="link color-a bb pb0 bw2" href="http://isthisnagee.github.io" >isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
-        </li>
-        <li class="dib">
-          <a class="link color-a bb pb0 bw2" href="index.html" >csc373</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
-        </li>
-        <li class="dib">
-          <a class="bb pb0 bw2 link color-a" href="mailto:nagee.elghassein@mail.utoronto.ca" >email
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-<h2 id="fast-multiplication">2. Fast Multiplication</h2>
-<p>Our <strong>input</strong> is $ X, Y$, where both are <span class="math inline">n</span> -digit integers. Our output is <span class="math inline">X \times Y</span>.<br />
-The typical algorithm we know for multiplication (the one taught in grade school) takes <span class="math inline">O(n^2)</span> complexity.<br />
-Kuratsuba's algorithm significantly improves this complexity by trying to limit the amount of multiplication done.</p>
-<p>Assume $ n $ is a power of 2, by padding if necessary. Then $ n = 2^k $ for some $ k N$.<br />
-Then we can split <span class="math inline">X,Y</span> into two halves, an upper and a lower, so if <span class="math inline">X = 1,234,567</span>, we would write<br />
-<span class="math inline">X = 01234567, X_1 = 0123, X_2 = 4567</span>. In this way, we have</p>
-<p><span class="math display">\displaystyle 
-X = 10^{\frac{n}{2}}X_1 + X_2
-</span></p>
-<p><span class="math display">\displaystyle 
-Y = 10^{\frac{n}{2}}Y_1 + Y_2
-</span></p>
-<p><span class="math display">\displaystyle 
-XY = (10^{\frac{n}{2}}X_1 + X_2) (10^{\frac{n}{2}}Y_1 + Y_2)
-</span></p>
-<p>Because we are in base 10, multiplication by 10 is an <span class="math inline">O(n)</span> operation, and so we save some time with that.</p>
-<pre><code>from math import floor, pow
-
-
-# get the nearest power of 2
-def power2(num):
-    return 1 &lt;&lt; (num-1).bit_length()
-
-
-def mult(x, y):
-    str_x = str(x)
-    str_y = str(y)
-
-    len_x = len(str_x)
-    len_y = len(str_y)
-
-    # pad the lesser to make them both the same size
-    if len_x &lt;= len_y:
-        str_x = &quot;0&quot;*(len_y - len_x) + str_x
-        # update the length
-        len_x = len(str_x)
-    else:
-        str_y = &quot;0&quot;*(len_x - len_y) + str_y
-        # update the length
-        len_y = len(str_y)
-
-    # find the nearest power of two, since we
-    # adjusted the length, it doesn&#39;t matter if we use
-    # `len_x` or `len_y`
-    padding = power2(len_x) - len_x
-    str_x = &quot;0&quot;*padding + str_x
-    str_y = &quot;0&quot;*padding + str_y
-
-    len_x = len(str_x)
-    len_y = len(str_y)
-
-    n = len_x
-
-    if n == 1:
-        return x * y
-
-    x_arr = [ch for ch in str_x]
-    y_arr = [ch for ch in str_y]
-
-    middle = int(floor(n / 2))
-
-    _X1 = x_arr[:middle]
-    _X2 = x_arr[middle:]
-
-    _Y1 = y_arr[0:middle]
-    _Y2 = y_arr[middle:]
-
-    X1 = _X1 if _X1 else [&quot;0&quot;]
-    X2 = _X2 if _X2 else [&quot;0&quot;]
-    Y1 = _Y1 if _Y1 else [&quot;0&quot;]
-    Y2 = _Y2 if _Y2 else [&quot;0&quot;]
-
-    x1 = int(&quot;&quot;.join(X1))
-    x2 = int(&quot;&quot;.join(X2))
-
-    y1 = int(&quot;&quot;.join(Y1))
-    y2 = int(&quot;&quot;.join(Y2))
-
-    A = mult(x1, y1)
-    B = mult(x2, y2)
-    t1 = x1 + x2
-    t2 = y1 + y2
-    C = mult(t1, t2)
-
-    return int(pow(10, n) * A + pow(10, middle) * (C - A - B) +</code></pre>
-<p>Testing the above gives the following output:</p>
-<pre><code>test
-11 * 21 = 231 = mult(11, 21) = 231
-1  * 21 = 21  = mult(1, 21)  = 21
-21 * 11 = 231 = mult(21, 11) = 231</code></pre>
-  </div>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>CSC373</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet"
+    href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"
+    type="text/css" media="screen" charset="utf-8">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+      for (var i=0; i < mathElements.length; i++)
+      {
+       var texText = mathElements[i].firstChild
+       katex.render(texText.data, mathElements[i])
+      }}
+      </script>
+          </head>
+  <body>
+    <div class="ml4 mt3 pr4 ">
+      <header class="w6">
+        <div class="w-80-m w-100-ns bb bw2 pb1">
+          <span class="f1 baskerville">isthisnagee</span>
+        </div>
+        <nav class="pv2 f5">
+          <ul class="list pl0 pt0">
+            <li class="dib">
+              <a class="link pointer color-a bb pb0 bw2 space-mono b--gray" href="http://isthisnagee.github.io">isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+            </li>
+            <li class="dib">
+              <a class="pointer bb pb0 bw2 link color-a space-mono b--gray" href="index.html">csc373
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <h2 id="fast-multiplication">Fast Multiplication</h2>
+      <p>Our <strong>input</strong> is $ X, Y$, where both are <span class="math inline">n</span> -digit integers. Our output is <span class="math inline">X \times Y</span>.<br />
+      The typical algorithm we know for multiplication (the one taught in grade school) takes <span class="math inline">O(n^2)</span> complexity.<br />
+      Kuratsuba's algorithm significantly improves this complexity by trying to limit the amount of multiplication done.</p>
+      <p>Assume $ n $ is a power of 2, by padding if necessary. Then $ n = 2^k $ for some $ k N$.<br />
+      Then we can split <span class="math inline">X,Y</span> into two halves, an upper and a lower, so if <span class="math inline">X = 1,234,567</span>, we would write<br />
+      <span class="math inline">X = 01234567, X_1 = 0123, X_2 = 4567</span>. In this way, we have</p>
+      <p><span class="math display">\displaystyle 
+      X = 10^{\frac{n}{2}}X_1 + X_2
+      </span></p>
+      <p><span class="math display">\displaystyle 
+      Y = 10^{\frac{n}{2}}Y_1 + Y_2
+      </span></p>
+      <p><span class="math display">\displaystyle 
+      XY = (10^{\frac{n}{2}}X_1 + X_2) (10^{\frac{n}{2}}Y_1 + Y_2)
+      </span></p>
+      <p>Because we are in base 10, multiplication by 10 is an <span class="math inline">O(n)</span> operation, and so we save some time with that.</p>
+      <pre><code>from math import floor, pow
+      
+      
+      # get the nearest power of 2
+      def power2(num):
+          return 1 &lt;&lt; (num-1).bit_length()
+      
+      
+      def mult(x, y):
+          str_x = str(x)
+          str_y = str(y)
+      
+          len_x = len(str_x)
+          len_y = len(str_y)
+      
+          # pad the lesser to make them both the same size
+          if len_x &lt;= len_y:
+              str_x = &quot;0&quot;*(len_y - len_x) + str_x
+              # update the length
+              len_x = len(str_x)
+          else:
+              str_y = &quot;0&quot;*(len_x - len_y) + str_y
+              # update the length
+              len_y = len(str_y)
+      
+          # find the nearest power of two, since we
+          # adjusted the length, it doesn&#39;t matter if we use
+          # `len_x` or `len_y`
+          padding = power2(len_x) - len_x
+          str_x = &quot;0&quot;*padding + str_x
+          str_y = &quot;0&quot;*padding + str_y
+      
+          len_x = len(str_x)
+          len_y = len(str_y)
+      
+          n = len_x
+      
+          if n == 1:
+              return x * y
+      
+          x_arr = [ch for ch in str_x]
+          y_arr = [ch for ch in str_y]
+      
+          middle = int(floor(n / 2))
+      
+          _X1 = x_arr[:middle]
+          _X2 = x_arr[middle:]
+      
+          _Y1 = y_arr[0:middle]
+          _Y2 = y_arr[middle:]
+      
+          X1 = _X1 if _X1 else [&quot;0&quot;]
+          X2 = _X2 if _X2 else [&quot;0&quot;]
+          Y1 = _Y1 if _Y1 else [&quot;0&quot;]
+          Y2 = _Y2 if _Y2 else [&quot;0&quot;]
+      
+          x1 = int(&quot;&quot;.join(X1))
+          x2 = int(&quot;&quot;.join(X2))
+      
+          y1 = int(&quot;&quot;.join(Y1))
+          y2 = int(&quot;&quot;.join(Y2))
+      
+          A = mult(x1, y1)
+          B = mult(x2, y2)
+          t1 = x1 + x2
+          t2 = y1 + y2
+          C = mult(t1, t2)
+      
+          return int(pow(10, n) * A + pow(10, middle) * (C - A - B) +</code></pre>
+      <p>Testing the above gives the following output:</p>
+      <pre><code>test
+      11 * 21 = 231 = mult(11, 21) = 231
+      1  * 21 = 21  = mult(1, 21)  = 21
+      21 * 11 = 231 = mult(21, 11) = 231</code></pre>
+          </div>   
+  </body>
 </html>

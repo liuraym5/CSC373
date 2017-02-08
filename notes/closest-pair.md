@@ -1,4 +1,4 @@
-# 3. Closest Pair of Points
+# Closest Pair of Points
 
 Problem: Given n points in 2-dimonsions, find two whose mutual distance is smallest
 
@@ -71,7 +71,6 @@ l - d      l      l + d
 
 The idea is this, suppose p' is in Q, the only possible positions of p'' are the x in the diagram. So p'' must appear within 9 positions.
 
-&lt;NAGEE WRITE IN PYTHON&gt;
 
 ```
 // X is P sorted by x coordinates

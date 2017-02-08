@@ -1,4 +1,4 @@
-## 2. Fast Multiplication
+## Fast Multiplication
 
 Our **input** is $ X, Y$, where both are $n$ -digit integers. Our output is $X \times Y$.  
 The typical algorithm we know for multiplication \(the one taught in grade school\) takes $O(n^2)$ complexity.  

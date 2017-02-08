@@ -1,4 +1,4 @@
-## 1. Merge Sort
+## Merge Sort
 
 a\) **Divide** the n-element sequence into two sorted sequence of sizes n/2 each
 

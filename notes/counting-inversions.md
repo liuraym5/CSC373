@@ -1,4 +1,4 @@
-# 5. Counting Inversions
+# Counting Inversions
 
 _**Inversion Count**_
 

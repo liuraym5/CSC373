@@ -1,71 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
-  <link rel="stylesheet" href="css/main.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
-  for (var i=0; i < mathElements.length; i++)
-  {
-   var texText = mathElements[i].firstChild
-   katex.render(texText.data, mathElements[i])
-  }}
-  </script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-  <div class="ml4 mt3 pr4">
-  <header class="w5">
-    <div class="w-60-l w-90-m w-100-l bb bw2 pb1 color-underline ">
-      <span class="f1 baskerville">CSC373</span>
-    </div>
-    <nav class="pv2">
-      <ul class="list pl0 pt0">
-        <li class="dib">
-          <a class="link color-a bb pb0 bw2" href="http://isthisnagee.github.io" >isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
-        </li>
-        <li class="dib">
-          <a class="link color-a bb pb0 bw2" href="index.html" >csc373</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
-        </li>
-        <li class="dib">
-          <a class="bb pb0 bw2 link color-a" href="mailto:nagee.elghassein@mail.utoronto.ca" >email
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-<h2 id="merge-sort">1. Merge Sort</h2>
-<p>a) <strong>Divide</strong> the n-element sequence into two sorted sequence of sizes n/2 each</p>
-<p>b) <strong>Conquer</strong> by sorting the two subsequences recursively with mergesort</p>
-<p>c) <strong>Combine</strong> by merging the two subsequences together to produce final sorted sequence</p>
-<p>A is an array, p, q, r are indices to the array such that <span class="math display">\displaystyle p \leq q \lt r</span></p>
-<pre><code>public merge(A, p, q, r){
-    int n1 = q - p + 1;
-    int n2 = r - q;
-    int[] l = new int[n1];
-    int[] r = new int[n2];
-    for (int i = 0; i &lt; n1; i++){
-        l[i] = A[i];
-    }
-    for (int j = 0; j &lt; n2; j++){
-        r[j] = A[q + j];
-    }
-
-}</code></pre>
-<pre><code>public mergeSort(A, p, r){
-    if (p &lt; r){
-        q = Math.floor((p + r)/ 2);
-        mergeSort(A, p, q);
-        mergeSort(A, q + 1, r);
-        merge(A, p, q, r);
-    }
-}</code></pre>
-  </div>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>CSC373</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet"
+    href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"
+    type="text/css" media="screen" charset="utf-8">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+      for (var i=0; i < mathElements.length; i++)
+      {
+       var texText = mathElements[i].firstChild
+       katex.render(texText.data, mathElements[i])
+      }}
+      </script>
+          </head>
+  <body>
+    <div class="ml4 mt3 pr4 ">
+      <header class="w6">
+        <div class="w-80-m w-100-ns bb bw2 pb1">
+          <span class="f1 baskerville">isthisnagee</span>
+        </div>
+        <nav class="pv2 f5">
+          <ul class="list pl0 pt0">
+            <li class="dib">
+              <a class="link pointer color-a bb pb0 bw2 space-mono b--gray" href="http://isthisnagee.github.io">isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+            </li>
+            <li class="dib">
+              <a class="pointer bb pb0 bw2 link color-a space-mono b--gray" href="index.html">csc373
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <h2 id="merge-sort">Merge Sort</h2>
+      <p>a) <strong>Divide</strong> the n-element sequence into two sorted sequence of sizes n/2 each</p>
+      <p>b) <strong>Conquer</strong> by sorting the two subsequences recursively with mergesort</p>
+      <p>c) <strong>Combine</strong> by merging the two subsequences together to produce final sorted sequence</p>
+      <p>A is an array, p, q, r are indices to the array such that <span class="math display">\displaystyle p \leq q \lt r</span></p>
+      <pre><code>public merge(A, p, q, r){
+          int n1 = q - p + 1;
+          int n2 = r - q;
+          int[] l = new int[n1];
+          int[] r = new int[n2];
+          for (int i = 0; i &lt; n1; i++){
+              l[i] = A[i];
+          }
+          for (int j = 0; j &lt; n2; j++){
+              r[j] = A[q + j];
+          }
+      
+      }</code></pre>
+      <pre><code>public mergeSort(A, p, r){
+          if (p &lt; r){
+              q = Math.floor((p + r)/ 2);
+              mergeSort(A, p, q);
+              mergeSort(A, q + 1, r);
+              merge(A, p, q, r);
+          }
+      }</code></pre>
+          </div>   
+  </body>
 </html>

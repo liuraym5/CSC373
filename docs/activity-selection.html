@@ -1,106 +1,100 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
-  <link rel="stylesheet" href="css/main.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
-  for (var i=0; i < mathElements.length; i++)
-  {
-   var texText = mathElements[i].firstChild
-   katex.render(texText.data, mathElements[i])
-  }}
-  </script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-  <div class="ml4 mt3 pr4">
-  <header class="w5">
-    <div class="w-60-l w-90-m w-100-l bb bw2 pb1 color-underline ">
-      <span class="f1 baskerville">CSC373</span>
-    </div>
-    <nav class="pv2">
-      <ul class="list pl0 pt0">
-        <li class="dib">
-          <a class="link color-a bb pb0 bw2" href="http://isthisnagee.github.io" >isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
-        </li>
-        <li class="dib">
-          <a class="link color-a bb pb0 bw2" href="index.html" >csc373</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
-        </li>
-        <li class="dib">
-          <a class="bb pb0 bw2 link color-a" href="mailto:nagee.elghassein@mail.utoronto.ca" >email
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-<h2 id="activity-selection">1. Activity Selection</h2>
-<p>Further readings: <a href="http://web.mst.edu/~silvestris/teaching/algorithmsFall2014/notes/greedy_proof.pdf" class="uri">http://web.mst.edu/~silvestris/teaching/algorithmsFall2014/notes/greedy_proof.pdf</a></p>
-<p><strong>Input:</strong> <span class="math inline">A[n]</span> such that an activity <span class="math inline">A[i] = (s_i, f_i)</span> is a tuple of its start and finish times.</p>
-<p><strong>Output:</strong> <span class="math inline">S \in A</span> such that no two activities in overlap.</p>
-<p>More formally, we want <span class="math inline">S = \{A[i] \mid \forall i \neq j, [s_i, f_i) \cap [s_j, f_j) = \emptyset \}</span></p>
-<p><strong>Optimal solution: </strong> maximize $|S| $</p>
-<p>Example:</p>
-<pre><code>|---- 1 ----||---- 2 ----|
-  |----- 3 -----||---- 4 ----|</code></pre>
-<p>Possible answers: <span class="math inline">S = \{1, 2\}, \{1, 4\},</span> or <span class="math inline">\{3, 4\}</span></p>
-<h3 id="attempt-brute-force">Attempt: Brute Force</h3>
-<p>Trivial Algorithm (try all possible sets) <span class="math inline">\in \Omega(2^n)</span></p>
-<h3 id="solution-greedy-approach">Solution: Greedy Approach</h3>
-<pre><code>templateGreedy(A){
-    sort A according to some criteria               # O(n log n)
-    initialize S as an empty array
-
-    while (A is not empty){                         # O(n)
-        pick 1st activity from A
-        add activity to S
-        remove all overlapping activities from S
-    }
-    return S
-}</code></pre>
-<h3 id="possible-criteria">Possible Criteria</h3>
-<p><strong>1) Increasing Starting Time</strong></p>
-<p><span class="math inline">s_{1} \leq s_{2} \leq ... \leq s_{n}</span></p>
-<pre><code>|----------- 1 -----------|
-|---- 2 ----| |---- 3 ----|</code></pre>
-<p>Problem: This is not optimal if we have the first activity overlapping the all other activities, since it will simply return 1, which may not be the optimal solution.</p>
-<p><strong>2) Increasing Interval Length</strong></p>
-<p><span class="math inline">f_1 - s_1 \leq f_2 - s_2 \leq ... \leq f_n - s_n</span></p>
-<pre><code>|---- 1 ----||---- 2 ----|
-       |--- 3 ---|</code></pre>
-<p>Problem: This is not optimal because if we have a short interval overlapping two intervals that do no intercept, 1 will be returned.</p>
-<p><strong>3) Pick interval that overlaps the least number of interval</strong></p>
-<p>Problem: Not optimal</p>
-<pre><code>|--- 1 ---||--- 2 ---||--- 3 ---||--- 4 ---|
-    |--  5  --|  |--  6  --| |--  7  --|
-    |--  8  --|              |--  9  --|
-    |-- 10  --|              |-- 11  --|</code></pre>
-<p><strong>4) Earliest Finishing Time (EFT)</strong></p>
-<p><span class="math inline">f_{1} \leq f_{2} \leq ... \leq f_{n}</span></p>
-<p><strong>Correctness:</strong></p>
-<p>Def: <span class="math inline">S_{i}</span> denotes the partial solution of EFT prior to <span class="math inline">i^{th}</span> iteration</p>
-<p>Def: <span class="math inline">S_{i}</span> is call feasible if it is possible to extend it to a complete optimal solution using only activities remaining in A</p>
-<p>Loop Invariant: <span class="math inline">S_{i}</span> is feasible</p>
-<p><strong>Proof by Induction on i:</strong></p>
-<p>Base Case: <span class="math inline">i = 0, S_{0} = \emptyset</span>, A has all activities, so feasible.</p>
-<p>Inductive Hypothesis: <span class="math inline">S_{i}</span> is feasible for some <span class="math inline">i \geq 0</span>, <span class="math inline">S_{i}</span> can be extended.</p>
-<p>Inductive Step: Consider the <span class="math inline">i^{th}</span> iteration, <span class="math inline">A \neq \emptyset</span>, let <span class="math inline">a = [s, f)</span> be the first activity chosen by EFT.</p>
-<p>i) Case 1: a is in the optimal solution (OPT)</p>
-<p>Exchange Argument:</p>
-<p>ii) Case 2: a is not in OPT. Let <span class="math inline">a&#39; = [s&#39;, f&#39;)</span>, <strong>next interval in OPT</strong>, be the first interval after <span class="math inline">S_{i}</span> in OPT.</p>
-<p>Note:</p>
-<p>i) <span class="math inline">[s, f) \cap [s&#39;, f&#39;) \neq \emptyset</span>, because otherwise we could increase OPT by adding <strong>a</strong></p>
-<p>ii) <span class="math inline">f \leq f&#39;</span> by properties of EFT. Hence, <span class="math inline">(OPT \backslash {a&#39;}) \cup {a}</span> is also OPT and extends <span class="math inline">S_{i+1}</span></p>
-<p><strong>Easier Explanation please</strong></p>
-<p><strong>Termination:</strong></p>
-<p><span class="math inline">A = \emptyset, S_{i} = OPT</span></p>
-<p>The runtime of this algorithm will be O(nlogn) because we had to sort.</p>
-  </div>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>CSC373</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet"
+    href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"
+    type="text/css" media="screen" charset="utf-8">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+      for (var i=0; i < mathElements.length; i++)
+      {
+       var texText = mathElements[i].firstChild
+       katex.render(texText.data, mathElements[i])
+      }}
+      </script>
+          </head>
+  <body>
+    <div class="ml4 mt3 pr4 ">
+      <header class="w6">
+        <div class="w-80-m w-100-ns bb bw2 pb1">
+          <span class="f1 baskerville">isthisnagee</span>
+        </div>
+        <nav class="pv2 f5">
+          <ul class="list pl0 pt0">
+            <li class="dib">
+              <a class="link pointer color-a bb pb0 bw2 space-mono b--gray" href="http://isthisnagee.github.io">isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+            </li>
+            <li class="dib">
+              <a class="pointer bb pb0 bw2 link color-a space-mono b--gray" href="index.html">csc373
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <h2 id="activity-selection">Activity Selection</h2>
+      <p>Further readings: <a href="http://web.mst.edu/~silvestris/teaching/algorithmsFall2014/notes/greedy_proof.pdf" class="uri">http://web.mst.edu/~silvestris/teaching/algorithmsFall2014/notes/greedy_proof.pdf</a></p>
+      <p><strong>Input:</strong> <span class="math inline">A[n]</span> such that an activity <span class="math inline">A[i] = (s_i, f_i)</span> is a tuple of its start and finish times.</p>
+      <p><strong>Output:</strong> <span class="math inline">S \in A</span> such that no two activities in overlap.</p>
+      <p>More formally, we want <span class="math inline">S = \{A[i] \mid \forall i \neq j, [s_i, f_i) \cap [s_j, f_j) = \emptyset \}</span></p>
+      <p><strong>Optimal solution: </strong> maximize $|S| $</p>
+      <p>Example:</p>
+      <pre><code>|---- 1 ----||---- 2 ----|
+        |----- 3 -----||---- 4 ----|</code></pre>
+      <p>Possible answers: <span class="math inline">S = \{1, 2\}, \{1, 4\},</span> or <span class="math inline">\{3, 4\}</span></p>
+      <h3 id="attempt-brute-force">Attempt: Brute Force</h3>
+      <p>Trivial Algorithm (try all possible sets) <span class="math inline">\in \Omega(2^n)</span></p>
+      <h3 id="solution-greedy-approach">Solution: Greedy Approach</h3>
+      <pre><code>templateGreedy(A){
+          sort A according to some criteria               # O(n log n)
+          initialize S as an empty array
+      
+          while (A is not empty){                         # O(n)
+              pick 1st activity from A
+              add activity to S
+              remove all overlapping activities from S
+          }
+          return S
+      }</code></pre>
+      <h3 id="possible-criteria">Possible Criteria</h3>
+      <p><strong>1) Increasing Starting Time</strong></p>
+      <p><span class="math inline">s_{1} \leq s_{2} \leq ... \leq s_{n}</span></p>
+      <pre><code>|----------- 1 -----------|
+      |---- 2 ----| |---- 3 ----|</code></pre>
+      <p>Problem: This is not optimal if we have the first activity overlapping the all other activities, since it will simply return 1, which may not be the optimal solution.</p>
+      <p><strong>2) Increasing Interval Length</strong></p>
+      <p><span class="math inline">f_1 - s_1 \leq f_2 - s_2 \leq ... \leq f_n - s_n</span></p>
+      <pre><code>|---- 1 ----||---- 2 ----|
+             |--- 3 ---|</code></pre>
+      <p>Problem: This is not optimal because if we have a short interval overlapping two intervals that do no intercept, 1 will be returned.</p>
+      <p><strong>3) Pick interval that overlaps the least number of interval</strong></p>
+      <p>Problem: Not optimal</p>
+      <pre><code>|--- 1 ---||--- 2 ---||--- 3 ---||--- 4 ---|
+          |--  5  --|  |--  6  --| |--  7  --|
+          |--  8  --|              |--  9  --|
+          |-- 10  --|              |-- 11  --|</code></pre>
+      <p><strong>4) Earliest Finishing Time (EFT)</strong></p>
+      <p><span class="math inline">f_{1} \leq f_{2} \leq ... \leq f_{n}</span></p>
+      <p><strong>Correctness:</strong></p>
+      <p>Def: <span class="math inline">S_{i}</span> denotes the partial solution of EFT prior to <span class="math inline">i^{th}</span> iteration</p>
+      <p>Def: <span class="math inline">S_{i}</span> is call feasible if it is possible to extend it to a complete optimal solution using only activities remaining in A</p>
+      <p>Loop Invariant: <span class="math inline">S_{i}</span> is feasible</p>
+      <p><strong>Proof by Induction on i:</strong></p>
+      <p>Base Case: <span class="math inline">i = 0, S_{0} = \emptyset</span>, A has all activities, so feasible.</p>
+      <p>Inductive Hypothesis: <span class="math inline">S_{i}</span> is feasible for some <span class="math inline">i \geq 0</span>, <span class="math inline">S_{i}</span> can be extended.</p>
+      <p>Inductive Step: Consider the <span class="math inline">i^{th}</span> iteration, <span class="math inline">A \neq \emptyset</span>, let <span class="math inline">a = [s, f)</span> be the first activity chosen by EFT.</p>
+      <p>i) Case 1: a is in the optimal solution (OPT)</p>
+      <p>Exchange Argument:</p>
+      <p>ii) Case 2: a is not in OPT. Let <span class="math inline">a&#39; = [s&#39;, f&#39;)</span>, <strong>next interval in OPT</strong>, be the first interval after <span class="math inline">S_{i}</span> in OPT.</p>
+      <p>Note:</p>
+      <p>i) <span class="math inline">[s, f) \cap [s&#39;, f&#39;) \neq \emptyset</span>, because otherwise we could increase OPT by adding <strong>a</strong></p>
+      <p>ii) <span class="math inline">f \leq f&#39;</span> by properties of EFT. Hence, <span class="math inline">(OPT \backslash {a&#39;}) \cup {a}</span> is also OPT and extends <span class="math inline">S_{i+1}</span></p>
+      <p><strong>Easier Explanation please</strong></p>
+      <p><strong>Termination:</strong></p>
+      <p><span class="math inline">A = \emptyset, S_{i} = OPT</span></p>
+      <p>The runtime of this algorithm will be O(nlogn) because we had to sort.</p>
+          </div>   
+  </body>
 </html>

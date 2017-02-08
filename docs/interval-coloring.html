@@ -1,89 +1,83 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="generator" content="pandoc">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title></title>
-  <style type="text/css">code{white-space: pre;}</style>
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"/>
-  <link rel="stylesheet" href="css/main.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
-  for (var i=0; i < mathElements.length; i++)
-  {
-   var texText = mathElements[i].firstChild
-   katex.render(texText.data, mathElements[i])
-  }}
-  </script>
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
-</head>
-<body>
-  <div class="ml4 mt3 pr4">
-  <header class="w5">
-    <div class="w-60-l w-90-m w-100-l bb bw2 pb1 color-underline ">
-      <span class="f1 baskerville">CSC373</span>
-    </div>
-    <nav class="pv2">
-      <ul class="list pl0 pt0">
-        <li class="dib">
-          <a class="link color-a bb pb0 bw2" href="http://isthisnagee.github.io" >isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
-        </li>
-        <li class="dib">
-          <a class="link color-a bb pb0 bw2" href="index.html" >csc373</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
-        </li>
-        <li class="dib">
-          <a class="bb pb0 bw2 link color-a" href="mailto:nagee.elghassein@mail.utoronto.ca" >email
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-<h1 id="interval-coloring">Interval Coloring</h1>
-<h2 id="interval-coloring-1">Interval Coloring</h2>
-<p><a href="http://www.cs.toronto.edu/~denisp/csc373/docs/borodin-interval-coloring.pdf">Slides</a> for the interval coloring problem</p>
-<p>Given a set of intervals, color all intervals so that intervals having the same colors do not intersect.</p>
-<p>Goal: Minimize the number of colors used.</p>
-<h2 id="machine-minimization">Machine Minimization</h2>
-<p>We augment the interval coloring problem so that instead of getting the minimum<br />
-number of colors, we try to find the minimum number of machines so that intervals<br />
-running on the $ i $th machine do not intersect (each machine gets non-intersecting processes).</p>
-<h4 id="input">Input:</h4>
-<p>An array $ A $ of $ n 1 $ intervals.</p>
-<h4 id="output">Output:</h4>
-<p>$ d  $ so that all intervals running on</p>
-<p><strong>Def</strong>: $ (A) $ is called the depth of $ A $, and is the maximum number of<br />
-intervals over one point in the timeline</p>
-<pre><code>|-------||=-----||------|
-    |-----=---|------|
-      |---=|
-          ^ depth of 3</code></pre>
-<p>We claim that the <span class="math inline">d</span> we will return satisfies</p>
-<p><span class="math display">\displaystyle 
-d \geq \text{depth}(A)
-</span></p>
-<p>Surprisingly, $ (A) = d $. This is achieved by the greedy algorithm we will<br />
-display below.</p>
-<pre><code>// javascript
-function machineNumber(A, n) {
-  A.sort( (s1,s2) =&gt; s1.start - s2.start )
-  let M = [] // should have size n
-  M[1] = 1
-  for (let i = 2; i &lt; n; i++) {
-    let S = []
-    for (let j = 1; j &lt; i - 1; j++) {
-      if (overlap(A[j], A[i])) {
-        S.push(M[j])
-      }
-    }
-    const minS = Math.min.apply(S)
-    // smallest natural number not in S, assuming N = 1,2,...
-    const min = minS &lt; 2 : 1 ? minS--
-    M[i] = min
-  }
-  return Math.max.apply(M)
-}</code></pre>
-  </div>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>CSC373</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet"
+    href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css"
+    type="text/css" media="screen" charset="utf-8">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+      for (var i=0; i < mathElements.length; i++)
+      {
+       var texText = mathElements[i].firstChild
+       katex.render(texText.data, mathElements[i])
+      }}
+      </script>
+          </head>
+  <body>
+    <div class="ml4 mt3 pr4 ">
+      <header class="w6">
+        <div class="w-80-m w-100-ns bb bw2 pb1">
+          <span class="f1 baskerville">isthisnagee</span>
+        </div>
+        <nav class="pv2 f5">
+          <ul class="list pl0 pt0">
+            <li class="dib">
+              <a class="link pointer color-a bb pb0 bw2 space-mono b--gray" href="http://isthisnagee.github.io">isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+            </li>
+            <li class="dib">
+              <a class="pointer bb pb0 bw2 link color-a space-mono b--gray" href="index.html">csc373
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <h1 id="interval-coloring">Interval Coloring</h1>
+      <h2 id="interval-coloring-1">Interval Coloring</h2>
+      <p><a href="http://www.cs.toronto.edu/~denisp/csc373/docs/borodin-interval-coloring.pdf">Slides</a> for the interval coloring problem</p>
+      <p>Given a set of intervals, color all intervals so that intervals having the same colors do not intersect.</p>
+      <p>Goal: Minimize the number of colors used.</p>
+      <h2 id="machine-minimization">Machine Minimization</h2>
+      <p>We augment the interval coloring problem so that instead of getting the minimum<br />
+      number of colors, we try to find the minimum number of machines so that intervals<br />
+      running on the $ i $th machine do not intersect (each machine gets non-intersecting processes).</p>
+      <h4 id="input">Input:</h4>
+      <p>An array $ A $ of $ n 1 $ intervals.</p>
+      <h4 id="output">Output:</h4>
+      <p>$ d  $ so that all intervals running on</p>
+      <p><strong>Def</strong>: $ (A) $ is called the depth of $ A $, and is the maximum number of<br />
+      intervals over one point in the timeline</p>
+      <pre><code>|-------||=-----||------|
+          |-----=---|------|
+            |---=|
+                ^ depth of 3</code></pre>
+      <p>We claim that the <span class="math inline">d</span> we will return satisfies</p>
+      <p><span class="math display">\displaystyle 
+      d \geq \text{depth}(A)
+      </span></p>
+      <p>Surprisingly, $ (A) = d $. This is achieved by the greedy algorithm we will<br />
+      display below.</p>
+      <pre><code>// javascript
+      function machineNumber(A, n) {
+        A.sort( (s1,s2) =&gt; s1.start - s2.start )
+        let M = [] // should have size n
+        M[1] = 1
+        for (let i = 2; i &lt; n; i++) {
+          let S = []
+          for (let j = 1; j &lt; i - 1; j++) {
+            if (overlap(A[j], A[i])) {
+              S.push(M[j])
+            }
+          }
+          const minS = Math.min.apply(S)
+          // smallest natural number not in S, assuming N = 1,2,...
+          const min = minS &lt; 2 : 1 ? minS--
+          M[i] = min
+        }
+        return Math.max.apply(M)
+      }</code></pre>
+          </div>   
+  </body>
 </html>
