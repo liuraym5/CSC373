@@ -48,6 +48,9 @@
       $for(include-after)$
       $include-after$
       $endfor$
-    </div>   
+    </div>
+    $if(animation)$
+    <script src="js/$animation$.js"></script>
+    $endif$
   </body>
 </html>
