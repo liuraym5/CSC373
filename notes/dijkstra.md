@@ -1,3 +1,7 @@
+---
+animation: dijkstra
+---
+
 # Dijkstra's Algorithm
 
 BFS finds the shortest path in a graph with unit lenght edges. With
@@ -5,6 +9,18 @@ Dijkstra's algorithm, we adapt BFS so that we can handle graphs
 $G = (V, E)$ with edge lengths $l(e)$ as *positive integers*.
 
 I'll present the algorithm first, and then I'll discuss the aspects of it.
+
+## Animation
+
+<div id="algorithm">
+  <div id="algorithm-buttons">
+  <button class="f5 b link ph3 pv2 mb2 pointer dim ba br1 b--black blue bg-white"
+          id="animate">
+  Show Animation
+  </button>
+  </div>
+  <div id="animation"></div>
+</div>
 
 ## Algorithm
 
@@ -41,4 +57,3 @@ def dijkstra(G,l,s):
             # accomodate the decrease in key value of the element
             decrease_key(H, v)
 ~~~
-

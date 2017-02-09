@@ -35,6 +35,17 @@
       <h1 id="dijkstras-algorithm">Dijkstra's Algorithm</h1>
       <p>BFS finds the shortest path in a graph with unit lenght edges. With Dijkstra's algorithm, we adapt BFS so that we can handle graphs <span class="math inline">G = (V, E)</span> with edge lengths <span class="math inline">l(e)</span> as <em>positive integers</em>.</p>
       <p>I'll present the algorithm first, and then I'll discuss the aspects of it.</p>
+      <h2 id="animation">Animation</h2>
+      <div id="algorithm">
+      <div id="algorithm-buttons">
+      <button class="f5 b link ph3 pv2 mb2 pointer dim ba br1 b--black blue bg-white" id="animate">
+      Show Animation
+      </button>
+      </div>
+      <div id="animation">
+      
+      </div>
+      </div>
       <h2 id="algorithm">Algorithm</h2>
       <h3 id="input">Input</h3>
       <ul>
@@ -67,6 +78,7 @@
                   # notifies queue that a the value for v has been decreased
                   # accomodate the decrease in key value of the element
                   decrease_key(H, v)</code></pre>
-          </div>   
-  </body>
+          </div>
+        <script src="./js/dijkstra.js"></script>
+      </body>
 </html>

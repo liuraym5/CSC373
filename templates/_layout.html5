@@ -50,7 +50,7 @@
       $endfor$
     </div>
     $if(animation)$
-    <script src="js/$animation$.js"></script>
+    <script src="./js/$animation$.js"></script>
     $endif$
   </body>
 </html>
