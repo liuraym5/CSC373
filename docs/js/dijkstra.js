@@ -1,6 +1,46 @@
+const dijkstra = (G, len, s) => {
 
-const dijkstra = (canvas) => {
+  const deleteMin(arr) => {
+    let found = false
+    const min = Math.min.apply(arr)
+    return arr.filter(e => {
+      if (found) { return true }
+      if (!found && e === min) { found = true }
+      return e !== min
+    })
+  }
+
+  /* we don't really care about running time,
+   * just correctness :)
+   */
+
+  const V = G.v
+  const E = G.E
+
+  let dist = new Array(V.length)
+  let prev = new Array(V.length)
+
+  V.forEach(i => {
+    dist[i] = Infinity
+    prev[i] = null
+  })
+
+  dist[s] = 0
+
+  let queue = []
+  V.forEach(i => queue.push(i))
+
+  while (queue != []) {
+    const u = delete_min(queue)
+    for (let i = 0; i < E.length; i++) {
+      const e = E[i]
+
+    }
+  }
+
 }
+
+const animateDijkstra = () => null 
 
 const createCanvas = (id,css) => {
   let canvas = document.createElement('canvas')
@@ -71,7 +111,7 @@ const initAnimation = () => {
   /* Animation */
 
   // run the animation on the canvas `canvas`
-  dijkstra(canvas)
+  animateDijkstra(canvas)
 }
 
 
