@@ -4,9 +4,7 @@ import os
 
 if __name__ == "__main__":
     driver = webdriver.Chrome()
-    driver.get(
-            'file:///Users/isthisnagee/UofT/csc373/notes/notes/docs/index.html'
-            )
+    driver.get('file://' + os.getcwd() + '/docs/index.html')
 
     def handler(event_type, src_path):
         print 'REFRESHING ' + src_path
