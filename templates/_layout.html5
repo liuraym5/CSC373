@@ -49,8 +49,8 @@
       $include-after$
       $endfor$
     </div>
-    $if(animation)$
+    $for(animation)$
     <script src="./js/$animation$.js"></script>
-    $endif$
+    $endfor$
   </body>
 </html>

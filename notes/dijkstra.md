@@ -1,5 +1,7 @@
 ---
-animation: dijkstra
+animation:
+  - graph
+  - dijkstra
 ---
 
 # Dijkstra's Algorithm
