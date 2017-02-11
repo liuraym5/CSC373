@@ -3,7 +3,7 @@ const vertex = (label, value) => {
     neighbors: [],
     degree: 0,
     label: label,
-    value: value
+    value: value,
   };
 };
 
@@ -56,28 +56,17 @@ const graph = (V, E) => {
 };
 
 
-const draw = (G, s, drawxy) => {
-  G.vertices.forEach(v => v.enqueued = 0);
-  G.vertices.forEach(v => v.depth = 1);
-  G.vertices.forEach(v => v.shift = 1);
-  let q = [];
-  q.push(s);
-  s.enqueued = 1;
-  s.shift = 1
-  s.depth = 1
-  while (q.length > 0) {
-    let v = q.shift();
-    // draw here
-    drawxy(v.shift*2, v.depth* 3)
-    // console.log(Array(v.depth * 2).join('-') + ` ${v.label}`)
-    vlen = v.neighbors.length + 1
-    v.neighbors.forEach(u => {
-      if (u.enqueued === 1) { return; }
-      u.depth = v.depth + 1
-      u.shift = 1 + vlen--;
-      u.enqueued = 1;
-      q.push(u);
-    });
+const draw = (G, draw_node, draw_edge) => {
+  for(i = 0; i < G.edges.length; i++) {
+    console.log(G.edges[i])
+    console.log(G.edges[i][0].value, G.edges[i][1].value)
+    draw_edge(G.edges[i][0].value, G.edges[i][1].value)
   }
+  for(i = 0; i < G.vertices.length; i++) {
+    // console.log(G.vertices[i].value)
+    draw_node(G.vertices[i].value[0], G.vertices[i].value[1])
+  }
+
+
 };
 
