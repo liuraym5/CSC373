@@ -56,3 +56,4 @@ TSP is a _search problem_:
 
 The problem here is finding the _optimum_ solution. If we are given a solution
 $S$ to an instance $I$, how do we know if $S$ is the best solution?
+

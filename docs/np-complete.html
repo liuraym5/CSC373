@@ -6,7 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css" type="text/css" media="screen" charset="utf-8">
         <link rel="stylesheet" href="css/main.css">
-              </head>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+      for (var i=0; i < mathElements.length; i++)
+      {
+       var texText = mathElements[i].firstChild
+       katex.render(texText.data, mathElements[i])
+      }}
+      </script>
+          </head>
   <body>
     <div class="ml4 mt3 pr4 ">
       <header class="w6">
@@ -26,6 +33,59 @@
         </nav>
               </header>
       <h1 id="np-complete-problems">NP-complete problems:</h1>
+      <h2 id="a-list-of-np-complete-problems">A List of NP-complete problems</h2>
+      <ul>
+      <li>Shortest vs longest simple paths: Shortest path can be found in <span class="math inline">O(VE)</span>, but the longest simple path is NP-complete.</li>
+      <li>Euler tour vs hamiltonian cycle: An <strong>Euler tour</strong> of a connected, directed graph is a cycle that traverses each <em>edge</em> once, we can solve in <span class="math inline">O(E)</span> a hamiltonian cycle is a simple cycle that visits each <em>vertex</em> exactly once. Determining if a graph has a hamiltonian cyle is NP-complete.</li>
+      <li>2-CNF vs 3-CNF satisfiability: 2-CNF can be solved in polynomial time, but 3-CNF is np complete.</li>
+      </ul>
+      <h2 id="defintions">Defintions</h2>
+      <h3 id="p">P</h3>
+      <p>These are problems that can be solved in <span class="math inline">O(n^k)</span> for some constant <span class="math inline">k</span>, where <span class="math inline">n</span> is the size of the input problem.</p>
+      <h3 id="np">NP</h3>
+      <p>These are the set of problems that are verifiable in polynomial time. So if we are given a <em>certificate</em> of a solution, then we can verify that the certificate is correct in polynomial time of input size.</p>
+      <h3 id="np-complete">NP-Complete</h3>
+      <p>A problem is in the class NPC if it is in NP and it is as &quot;hard&quot; as any problem in NP.</p>
+      <blockquote>
+      <p>If <em>any</em> NP-complete problem can be solved in polynomial time, then every problem in NP has a polynomial time algorithm.</p>
+      </blockquote>
+      <h2 id="showing-that-problems-are-npc">Showing that problems are NPC</h2>
+      <p>We rely on three key concepts:</p>
+      <h3 id="decision-problems-vs-optimization-problems">1. Decision problems vs optimization problems</h3>
+      <p>We can relate an optimization problem to a decision problem by adding a bound <span class="math inline">b</span> and asking if we can do better than <span class="math inline">b</span>.</p>
+      <h3 id="reductions">2. Reductions</h3>
+      <p>Consider a decision problem <span class="math inline">A</span>, which we would like to solve in polynomial time. Suppose we know how to solve a decision problem <span class="math inline">B</span> in polynomial time. And suppose we have a procedure that transforms any instance <span class="math inline">\alpha</span> of <span class="math inline">A</span> into an instance <span class="math inline">\beta</span> of <span class="math inline">B</span> such that:</p>
+      <ul>
+      <li>The transformation takes polynomial time</li>
+      <li>The answers are the same. The answer for <span class="math inline">\alpha</span> is yes iff the answer for <span class="math inline">\beta</span> is yes.</li>
+      </ul>
+      <h2 id="vertex-covers">Vertex Covers</h2>
+      <p>Let <span class="math inline">G=(V,E)</span> be an undirected graph. <span class="math inline">S \subset V</span> is a vertex cover if every edge <span class="math inline">e \in E</span> is incident on at least one node in <span class="math inline">S</span>, and <span class="math inline">|S| = k</span>, then we call it a <span class="math inline">k</span>-cover.</p>
+      <p>The language is as follows: <span class="math inline">L_{VC} = \{ &lt;G,k&gt; | G</span> has a <span class="math inline">k</span>-cover <span class="math inline">\}</span>.</p>
+      <p>We claim <span class="math inline">L_{VC}</span> is NP-complete.</p>
+      <h4 id="proof">Proof</h4>
+      <ol type="1">
+      <li>[ 1 ] Certificate set <span class="math inline">S \subset V(G)</span>. Verifier checks <span class="math inline">|S|=k</span> and that every edge is incident on a vertex in <span class="math inline">S</span>. Clearly the certificate is of polynomial size and the verifier runs in polynomial time.</li>
+      <li>[ 2 ] We'll show that <span class="math inline">L_{CLIQUE} \leq_p L_{VC}</span> Given <span class="math inline">G</span>, <span class="math inline">k</span>, we need to construct <span class="math inline">G&#39;</span> and <span class="math inline">k&#39;</span> such that <span class="math inline">G</span> has a <span class="math inline">k</span>-clique iff <span class="math inline">G&#39;</span> has a <span class="math inline">k-</span>cover. Let <span class="math inline">V&#39; = V</span>, <span class="math inline">E&#39;</span> be <span class="math inline">(v 2) - E</span>, and <span class="math inline">k&#39; = n-k</span>. Then <span class="math inline">G</span> has a <span class="math inline">k-</span>clique S, then we need to show <span class="math inline">V - S</span> is a vertex cover in <span class="math inline">G&#39;</span>. <span class="math inline">\{u,v\} \in E&#39;</span> iff ${ u,v } E u S v S $. Let <span class="math inline">G&#39;</span> have <span class="math inline">(n-k)</span>-cover_</li>
+      </ol>
+      <p>## Hamiltonian Cycles</p>
+      <p>A Hamiltonian cycle is a simple cycle that goes through every vertex.</p>
+      <p>Fact: The language of hamiltonian cycles <span class="math inline">\{ &lt;G&gt; | G</span> has a hamiltonian cycle <span class="math inline">\} \in NPC</span>.</p>
+      <h3 id="hamiltonian-path-and-cycle">Hamiltonian Path and Cycle</h3>
+      <p>We'll show that a hamiltonian path reduces to hamiltonian cycles. Let <span class="math inline">G=(V,E)</span> be given, and we want to construct <span class="math inline">G&#39;</span> such that if <span class="math inline">G</span> has a hamiltonian cycle, then <span class="math inline">G&#39;</span> has a hamiltonian path.</p>
+      <p>Pick an arbitrary <span class="math inline">v \in V</span>, and split it into <span class="math inline">v, v&#39;</span>, where the neighbors of <span class="math inline">v</span> are the neighbors or <span class="math inline">v&#39;</span> , and <span class="math inline">v</span> is not connected to <span class="math inline">v&#39;</span> via an edge. We introduce to new noes <span class="math inline">f,s</span> and connect <span class="math inline">f</span> to <span class="math inline">v</span> and <span class="math inline">s</span> to <span class="math inline">v&#39;</span></p>
+      <pre><code>
+                s  - v&#39;  -
+         /               \ \
+      v  -  =&gt;          /
+         \      f  - v  -
+                         \</code></pre>
+      <h4 id="proof-1">Proof</h4>
+      <ul>
+      <li>[=&gt;] Given a hamiltonian cycle, add <span class="math inline">f, v&#39;</span> to the beginning and <span class="math inline">v&#39;,s</span> to the end, and this is a hamiltonian path. <span class="math display">\displaystyle ( v,u_i, v ) =&gt; ( f,v,u_i, v&#39;, s ) </span></li>
+      </ul>
+      <p>Let's show that the hamiltonian cycle reduces to TSP. Given <span class="math inline">G=(V,E)</span>, undirected, we need to create <span class="math inline">G&#39;,c,k</span>.</p>
+      <p>Let <span class="math inline">G&#39;</span> be a complete graph on <span class="math inline">V</span> and the cost of an edge in <span class="math inline">E&#39;</span> is 0 if it's in <span class="math inline">E</span>, and 1 otherwise. Then <span class="math inline">G&#39;,c</span> has a tour of cost o if and only if <span class="math inline">G</span> has a hamiltonian cycle, ad the construction is in polynomial time.</p>
           </div>   
   </body>
 </html>

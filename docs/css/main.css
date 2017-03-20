@@ -572,7 +572,6 @@ cf:before, .cf:after {
 }
 
 .sf {font-family: sans-serif; }
-ul, ol { list-style-type: none; }
 li { line-height: 1.33; }
 
 a {
