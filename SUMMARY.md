@@ -12,4 +12,4 @@
     * [Interval Coloring](greedy/interval-coloring.md)
     * [Tiling](greedy/tiling.md)
     * [Counting Inversions](greedy/counting-inversions.md)
-
+* [Complexity](notes/complexity.md)

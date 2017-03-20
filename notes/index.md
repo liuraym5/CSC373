@@ -19,4 +19,7 @@ pull request on this repo's [github](https://github.com/isthisnagee/CSC373)
     * [Counting Inversions](counting-inversions.html)
 * Graphs
     * [Djikstra's Algorithm](dijkstra.html)
+* Complexity
+    * [Search Problems](search.html)
+    * [NP-complete Problems](np-complete.html)
 
