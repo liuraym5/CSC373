@@ -4,7 +4,7 @@
  most "reasonable" model of computation, polynomial in one means polynomial in
  another. We'll also mention that polynomials are closed under addition,
  multiplication, and composition, which means that if we do $f\ op\ g, op \in
- \{+,+, \circ \}$, we get a polynomial.
+ \{+,*, \circ \}$, we get a polynomial.
 
 ## Abstract Problems
 
@@ -25,7 +25,7 @@ problem as input.
 
 A problem whose instance set is the set of binary strings.
 
-An algorithm **solves** a concrete problem in $O(T(n))$, where $n$ is the length 
+An algorithm **solves** a concrete problem in $O(T(n))$, where $n$ is the length
 of the instance $i$.
 
 ### [Def] Polynomial Time Solvable
