@@ -3,7 +3,7 @@
  Let's formalize polynomial-time solvable problems. We'll first say that for
  most "reasonable" model of computation, polynomial in one means polynomial in
  another. We'll also mention that polynomials are closed under addition,
- multiplication, and composition, which means that if we do $f op g, op \in
+ multiplication, and composition, which means that if we do $f\ op\ g, op \in
  \{+,+, \circ \}$, we get a polynomial.
 
 ## Abstract Problems
