@@ -20,6 +20,6 @@ pull request on this repo's [github](https://github.com/isthisnagee/CSC373)
 * Graphs
     * [Djikstra's Algorithm](dijkstra.html)
 * Complexity
-    * [Search Problems](search.html)
+    * [Intro](np-intro.html)
     * [NP-complete Problems](np-complete.html)
 

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSC373</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="css/main.css">
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+      for (var i=0; i < mathElements.length; i++)
+      {
+       var texText = mathElements[i].firstChild
+       katex.render(texText.data, mathElements[i])
+      }}
+      </script>
+          </head>
+  <body>
+    <div class="ml4 mt3 pr4 ">
+      <header class="w6">
+        <div class="w-80-m w-100-ns bb bw2 pb1">
+          <span class="f1 baskerville">isthisnagee</span>
+        </div>
+        <nav class="pv2 f5">
+          <ul class="list pl0 pt0">
+            <li class="dib">
+              <a class="link pointer color-a bb pb0 bw2 space-mono b--gray" href="http://isthisnagee.github.io">isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+            </li>
+            <li class="dib">
+              <a class="pointer bb pb0 bw2 link color-a space-mono b--gray" href="index.html">csc373
+              </a>
+            </li>
+          </ul>
+        </nav>
+              </header>
+      <h1 id="intorduction-to-np-completeness">Intorduction to NP-Completeness</h1>
+      <h2 id="definitions">Definitions</h2>
+      <h3 id="optimization-problems">Optimization Problems</h3>
+      <p>These are problems in which each legal solution has a value, and we want to find a legal solution with the <em>best</em> value.</p>
+      <h3 id="decision-problems">Decision Problems</h3>
+      <p>These are problems where the answer is simply 1 or 0 (yes or no).</p>
+      <h3 id="reductions">Reductions</h3>
+      <p>This is the notion of showing that a problem is no harder or easier than another. Suppose we have two decision problems, <span class="math inline">A</span>, and <span class="math inline">B</span>, with instances <span class="math inline">\alpha</span> and <span class="math inline">\beta</span>, respectively. Suppose we have a procedure <span class="math inline">P</span> that takes instances of <span class="math inline">A</span> and transforms them to instances of <span class="math inline">B</span> (in very handwavy notation, <span class="math inline">P: A \rightarrow B</span>). Let <span class="math inline">P</span> have the following characteristics:</p>
+      <ul>
+      <li>P runs in polynomial time</li>
+      <li>The answer for <span class="math inline">\alpha</span> is yes iff the answer for <span class="math inline">P(\alpha)</span> is yes</li>
+      </ul>
+      <p>Say we <em>know how to solve</em> <span class="math inline">B</span> <em>in polynomial time</em> (lets call this <span class="math inline">c</span>). Then using <span class="math inline">P</span>, we say <span class="math inline">A</span> is just as easy to solve.</p>
+      <p><span class="math display">\displaystyle 
+      a \Rightarrow c(P(a)) \in \{0,1\} 
+      </span></p>
+      <p>Both <span class="math inline">P</span> and <span class="math inline">c</span> take polynomial time, and so we have a way to decide <span class="math inline">A</span> in polynomial time.</p>
+      <h3 id="p">P</h3>
+      <p>This is the class of problems that are solvable in polynomial time ($O(n^k)) for a constant <span class="math inline">k</span> and <span class="math inline">n</span> is the size of the input).</p>
+      <h3 id="np">NP</h3>
+      <p>This is the class of problems <em>verifiable</em> in polynomial time. Suppose we are given an input <span class="math inline">I</span> and a possible solution <span class="math inline">S</span>. We'll call <span class="math inline">S</span> the <em>certificate</em>. The problem is NP if we can check if the certificate is correct in polynomial time with respect to the size of the input <span class="math inline">I</span> (so it runs in <span class="math inline">O(|I|^k)</span>).</p>
+      <h3 id="npc">NPC</h3>
+      <p>[Informally] These are problems in NP and are as &quot;hard&quot; as any problem in NP.</p>
+      <p>[Formally] A language <span class="math inline">L \subseteq \{0,1\}^*</span> is NP-complete if</p>
+      <ol type="1">
+      <li><span class="math inline">L \in NP</span></li>
+      <li><span class="math inline">L&#39; \leq_p L \ \forall \ L&#39; \in NP</span></li>
+      </ol>
+      <h3 id="np-hard">NP-hard</h3>
+      <p>A language <span class="math inline">L</span> that satisfies property 2, but not neessarily 1 is considered NP-hard</p>
+      <hr />
+      <p>We can cast an optimization problem as a decision problem by adding a bound on the value we are optimizing. If an optimizaiton problem is easy, then its related decision problem is also easy, and if a decision problem is hard, then so is the optimization problem.</p>
+      <p><span class="math inline">P \subseteq NP</span>. This is because the verification step can just be solving the problem. The big question is whether <span class="math inline">P \subset NP</span> or <span class="math inline">P = NP</span></p>
+      <p>If <em>any</em> NPC problem can be solved in polynomial time, then <em>every</em> problem in <span class="math inline">NP</span> has a polynomial time algorithm.</p>
+          </div>   
+  </body>
+</html>
