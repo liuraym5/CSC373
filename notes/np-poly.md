@@ -1,4 +1,4 @@
- # Polynomial Time
+# Polynomial Time
 
  Let's formalize polynomial-time solvable problems. We'll first say that for
  most "reasonable" model of computation, polynomial in one means polynomial in
