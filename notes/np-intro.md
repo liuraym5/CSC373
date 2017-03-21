@@ -1,4 +1,4 @@
-# Intorduction to NP-Completeness
+# Introduction to NP-Completeness
 
 ## Definitions
 
@@ -16,7 +16,7 @@ These are problems where the answer is simply 1 or 0 (yes or no).
 This is the notion of showing that a problem is no harder or easier than
 another. Suppose we have two decision problems, $A$, and $B$, with instances
 $\alpha$ and $\beta$, respectively. Suppose we have a procedure $P$ that takes
-instances of $A$ and transforms them to instances of $B$ (in very handwavy
+instances of $A$ and transforms them to instances of $B$ (in very hand wavy
 notation, $P: A \rightarrow B$). Let $P$ have the following characteristics:
 
 - P runs in polynomial time
@@ -56,13 +56,13 @@ $O(|I|^k)$).
 
 ### NP-hard
 
-A language $L$ that satisfies property 2, but not neessarily 1 is considered
+A language $L$ that satisfies property 2, but not necessarily 1 is considered
 NP-hard
 
 ---
 
 We can cast an optimization problem as a decision problem by adding a bound on
-the value we are optimizing. If an optimizaiton problem is easy, then its
+the value we are optimizing. If an optimization problem is easy, then its
 related decision problem is also easy, and if a decision problem is hard, then
 so is the optimization problem.
 

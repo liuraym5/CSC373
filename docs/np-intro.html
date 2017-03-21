@@ -32,14 +32,14 @@
           </ul>
         </nav>
               </header>
-      <h1 id="intorduction-to-np-completeness">Intorduction to NP-Completeness</h1>
+      <h1 id="introduction-to-np-completeness">Introduction to NP-Completeness</h1>
       <h2 id="definitions">Definitions</h2>
       <h3 id="optimization-problems">Optimization Problems</h3>
       <p>These are problems in which each legal solution has a value, and we want to find a legal solution with the <em>best</em> value.</p>
       <h3 id="decision-problems">Decision Problems</h3>
       <p>These are problems where the answer is simply 1 or 0 (yes or no).</p>
       <h3 id="reductions">Reductions</h3>
-      <p>This is the notion of showing that a problem is no harder or easier than another. Suppose we have two decision problems, <span class="math inline">A</span>, and <span class="math inline">B</span>, with instances <span class="math inline">\alpha</span> and <span class="math inline">\beta</span>, respectively. Suppose we have a procedure <span class="math inline">P</span> that takes instances of <span class="math inline">A</span> and transforms them to instances of <span class="math inline">B</span> (in very handwavy notation, <span class="math inline">P: A \rightarrow B</span>). Let <span class="math inline">P</span> have the following characteristics:</p>
+      <p>This is the notion of showing that a problem is no harder or easier than another. Suppose we have two decision problems, <span class="math inline">A</span>, and <span class="math inline">B</span>, with instances <span class="math inline">\alpha</span> and <span class="math inline">\beta</span>, respectively. Suppose we have a procedure <span class="math inline">P</span> that takes instances of <span class="math inline">A</span> and transforms them to instances of <span class="math inline">B</span> (in very hand wavy notation, <span class="math inline">P: A \rightarrow B</span>). Let <span class="math inline">P</span> have the following characteristics:</p>
       <ul>
       <li>P runs in polynomial time</li>
       <li>The answer for <span class="math inline">\alpha</span> is yes iff the answer for <span class="math inline">P(\alpha)</span> is yes</li>
@@ -61,9 +61,9 @@
       <li><span class="math inline">L&#39; \leq_p L \ \forall \ L&#39; \in NP</span></li>
       </ol>
       <h3 id="np-hard">NP-hard</h3>
-      <p>A language <span class="math inline">L</span> that satisfies property 2, but not neessarily 1 is considered NP-hard</p>
+      <p>A language <span class="math inline">L</span> that satisfies property 2, but not necessarily 1 is considered NP-hard</p>
       <hr />
-      <p>We can cast an optimization problem as a decision problem by adding a bound on the value we are optimizing. If an optimizaiton problem is easy, then its related decision problem is also easy, and if a decision problem is hard, then so is the optimization problem.</p>
+      <p>We can cast an optimization problem as a decision problem by adding a bound on the value we are optimizing. If an optimization problem is easy, then its related decision problem is also easy, and if a decision problem is hard, then so is the optimization problem.</p>
       <p><span class="math inline">P \subseteq NP</span>. This is because the verification step can just be solving the problem. The big question is whether <span class="math inline">P \subset NP</span> or <span class="math inline">P = NP</span></p>
       <p>If <em>any</em> NPC problem can be solved in polynomial time, then <em>every</em> problem in <span class="math inline">NP</span> has a polynomial time algorithm.</p>
           </div>   
