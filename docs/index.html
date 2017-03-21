@@ -6,7 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css" type="text/css" media="screen" charset="utf-8">
         <link rel="stylesheet" href="css/main.css">
-              </head>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+      for (var i=0; i < mathElements.length; i++)
+      {
+       var texText = mathElements[i].firstChild
+       katex.render(texText.data, mathElements[i])
+      }}
+      </script>
+          </head>
   <body>
     <div class="ml4 mt3 pr4 ">
       <header class="w6">
@@ -49,6 +56,7 @@
       <li>Complexity
       <ul>
       <li><a href="np-intro.html">Intro</a></li>
+      <li><a href="np-poly.html"><span class="math inline">P</span></a></li>
       <li><a href="np-complete.html">NP-complete Problems</a></li>
       </ul></li>
       </ul>

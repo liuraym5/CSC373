@@ -21,5 +21,6 @@ pull request on this repo's [github](https://github.com/isthisnagee/CSC373)
     * [Djikstra's Algorithm](dijkstra.html)
 * Complexity
     * [Intro](np-intro.html)
+    * [$P$](np-poly.html)
     * [NP-complete Problems](np-complete.html)
 
