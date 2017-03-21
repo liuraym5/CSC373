@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSC373</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="css/main.css">
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+      for (var i=0; i < mathElements.length; i++)
+      {
+       var texText = mathElements[i].firstChild
+       katex.render(texText.data, mathElements[i])
+      }}
+      </script>
+          </head>
+  <body>
+    <div class="ml4 mt3 pr4 ">
+      <header class="w6">
+        <div class="w-80-m w-100-ns bb bw2 pb1">
+          <span class="f1 baskerville">isthisnagee</span>
+        </div>
+        <nav class="pv2 f5">
+          <ul class="list pl0 pt0">
+            <li class="dib">
+              <a class="link pointer color-a bb pb0 bw2 space-mono b--gray" href="http://isthisnagee.github.io">isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+            </li>
+            <li class="dib">
+              <a class="pointer bb pb0 bw2 link color-a space-mono b--gray" href="index.html">csc373
+              </a>
+            </li>
+          </ul>
+        </nav>
+              </header>
+      <p># Polynomial Time</p>
+      <p>Let's formalize polynomial-time solvable problems. We'll first say that for most &quot;reasonable&quot; model of computation, polynomial in one means polynomial in another. We'll also mention that polynomials are closed under addition, multiplication, and composition, which means that if we do <span class="math inline">f op g, op \in  \{+,+, \circ \}</span>, we get a polynomial.</p>
+      <h2 id="abstract-problems">Abstract Problems</h2>
+      <p>An Abstract Problem <span class="math inline">Q</span> is a <em>binary relation</em> on a set of problem <em>instances</em> <span class="math inline">I</span> and a set of problem <em>solutions</em> <span class="math inline">S</span>. In this way we can view a <a href="np-intro.html#decision-problems">decision problem</a> as a function that maps instances <span class="math inline">I</span> to <span class="math inline">\{0,1\}</span>.</p>
+      <h2 id="encodings">Encodings</h2>
+      <p>An <em>encoding</em> of a set <span class="math inline">S</span> of objects is a mapping <span class="math inline">e</span> from <span class="math inline">S</span> to the set of binary strings (<span class="math inline">e: I \rightarrow \{0,1\}^*</span>).</p>
+      <p>So an algorithm that solves a decision problem takes in the encoding of the problem as input.</p>
+      <h3 id="def-concrete-problem">[Def] Concrete Problem</h3>
+      <p>A problem whose instance set is the set of binary strings.</p>
+      <p>An algorithm <strong>solves</strong> a concrete problem in <span class="math inline">O(T(n))</span>, where <span class="math inline">n</span> is the length of the instance <span class="math inline">i</span>.</p>
+      <h3 id="def-polynomial-time-solvable">[Def] Polynomial Time Solvable</h3>
+      <p>We say a <em>concrete problem</em> is polynomial time solvable if there exists an algorithm to solve it in time <span class="math inline">O(n^k)</span> for some constant <span class="math inline">k</span>.</p>
+      <h2 id="the-complexity-class-p">The complexity class P</h2>
+      <p>We define the complexity class <span class="math inline">P</span> as the set of concrete decision problems that are polynomial time solvable.</p>
+          </div>   
+  </body>
+</html>

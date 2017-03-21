@@ -35,7 +35,8 @@ polynomial time.
 ### P
 
 This is the class of problems that are solvable in polynomial time ($O(n^k)) for
-a constant $k$ and $n$ is the size of the input).
+a constant $k$ and $n$ is the size of the input). This is more formally defined
+[here](np-poly.html).
 
 ### NP
 
