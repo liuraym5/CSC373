@@ -22,5 +22,6 @@ pull request on this repo's [github](https://github.com/isthisnagee/CSC373)
 * Complexity
     * [Intro](np-intro.html)
     * [$P$](np-poly.html)
+    * [Polynomial-time Verification](np-polyver.html)
     * [NP-complete Problems](np-complete.html)
 

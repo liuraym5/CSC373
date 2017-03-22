@@ -46,7 +46,7 @@ remember, here's a [wiki](https://en.wikipedia.org/wiki/Formal_language) article
 For any decision problem $Q$, as a language $L$ over $\Sigma = \{0,1\}$,
 where $L = \{ x \in \Sigma^* : Q(x) = 1\}$.
 
-We say an algorithm $A$ accepts a string $x \in \{0,1\}$ if $A(x) = 1$, and
+We say an algorithm $A$ accepts a string $x \in \{0,1\}^*$ if $A(x) = 1$, and
 rejects it otherwise.
 
 An language $L$ is **decided** by an algorithm $A$ if
