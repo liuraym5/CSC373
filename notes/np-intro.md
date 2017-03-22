@@ -1,3 +1,8 @@
+---
+prev: dijkstra.html 
+next: np-poly.html
+---
+
 # Introduction to NP-Completeness
 
 ## Definitions
@@ -60,7 +65,6 @@ $O(|I|^k)$).
 A language $L$ that satisfies property 2, but not necessarily 1 is considered
 NP-hard
 
----
 
 We can cast an optimization problem as a decision problem by adding a bound on
 the value we are optimizing. If an optimization problem is easy, then its

@@ -1,3 +1,9 @@
+---
+prev: np-intro.html
+next: np-polyver.html
+---
+
+
 # Polynomial Time
 
  Let's formalize polynomial-time solvable problems. We'll first say that for
