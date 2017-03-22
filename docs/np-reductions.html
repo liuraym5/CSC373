@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CSC373</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="https://unpkg.com/tachyons@4.6.1/css/tachyons.min.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="css/main.css">
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" /><script type="text/javascript">window.onload = function(){var mathElements = document.getElementsByClassName("math");
+      for (var i=0; i < mathElements.length; i++)
+      {
+       var texText = mathElements[i].firstChild
+       katex.render(texText.data, mathElements[i])
+      }}
+      </script>
+          </head>
+  <body>
+    <div class="ml4 mt3 pr4 ">
+      <header class="w6">
+        <div class="w-80-m w-100-ns bb bw2 pb1">
+          <span class="f1 baskerville">isthisnagee</span>
+        </div>
+        <nav class="pv2 f5">
+          <ul class="list pl0 pt0">
+            <li class="dib">
+              <a class="link pointer color-a bb pb0 bw2 space-mono b--gray" href="http://isthisnagee.github.io">isthisnagee</a><span class="f5 space-mono">&nbsp;||&nbsp;</span>
+            </li>
+            <li class="dib">
+              <a class="pointer bb pb0 bw2 link color-a space-mono b--gray" href="index.html">csc373
+              </a>
+            </li>
+          </ul>
+        </nav>
+              </header>
+      <h2 id="subset-sum">Subset Sum</h2>
+      <h4 id="input">Input</h4>
+      <ul>
+      <li><span class="math inline">A = \{a_1, ... , a_n \} \subseteq \mathbb Z_{&gt; 0}</span></li>
+      <li><span class="math inline">t \in \mathbb Z_{&gt; 0}</span></li>
+      </ul>
+      <h4 id="output">Output</h4>
+      <ul>
+      <li>1 if there exists a subset such that its sum is <span class="math inline">t</span>.</li>
+      <li>0 otherwise</li>
+      </ul>
+      <h3 id="subset-sum-is-np-complete">Subset Sum is NP complete</h3>
+      <p>Let <span class="math display">\displaystyle 
+      L_{SUB-SUM} = \{[ A=\{a_i\}, t ], \exists S \subseteq A \sum_{i \in S} a_i =
+      t\}
+      </span></p>
+      <p>We claim that the language is NPC.</p>
+      <h4 id="proof">Proof</h4>
+      <ol type="1">
+      <li>The certificate is <span class="math inline">S</span>. clearly a check of the certificate runs in polynomial time.</li>
+      <li><span class="math inline">L_{3-SAT} \leq_p L_{SUB-SUM}</span> Given <span class="math inline">\phi</span>, a 3-CNF over variables <span class="math inline">x_i</span> and has clauses <span class="math inline">C_j</span>, we want to construct in polynomial time <span class="math inline">A \subseteq Z_{&gt; 0}</span> such that <span class="math inline">\phi</span> is SAT if and only if <span class="math inline">(A,t) \in L_{SUB-SUM}</span></li>
+      </ol>
+      <p>Let's do 2:</p>
+      <p>For each variable <span class="math inline">x_i</span>, let's introduce two integers <span class="math inline">v_i</span> and <span class="math inline">v_i&#39;</span> with the following properties</p>
+      <ul>
+      <li><span class="math inline">v_i</span> has 1 at position <span class="math inline">x_i</span> in the variable part and at position <span class="math inline">C_i</span> for each <span class="math inline">C_i</span> satisfied by <span class="math inline">x_i = T</span>.</li>
+      <li><span class="math inline">v_i&#39;</span> has 1 at position <span class="math inline">x_i</span> in the variable part and at position <span class="math inline">C_i</span> for each <span class="math inline">C_i</span> satisfied by <span class="math inline">x_i = F</span>.</li>
+      </ul>
+      <p>For each clause, we introduce integers <span class="math inline">S_i</span>, which has 1 at position <span class="math inline">C_i</span>. For each clause, we introduce integers <span class="math inline">S_i&#39;</span>, which has 2 at position <span class="math inline">C_i</span>.</p>
+      <p>Consider the following example:</p>
+      <ul>
+      <li>$ C_1 = x_1 x_2 x_3$</li>
+      <li>$ C_2 = x_1 x_2 x_3$</li>
+      <li>$ C_2 = x_1 x_2 x_3$</li>
+      </ul>
+      <table>
+      <thead>
+      <tr class="header">
+      <th></th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>x3</th>
+      <th>C1</th>
+      <th>C2</th>
+      <th>C3</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td>v1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      </tr>
+      <tr class="even">
+      <td>v1'</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      </tr>
+      <tr class="odd">
+      <td>v2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      </tr>
+      <tr class="even">
+      <td>v2'</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      </tr>
+      <tr class="odd">
+      <td>v3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      </tr>
+      <tr class="even">
+      <td>v3'</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      </tr>
+      </tbody>
+      </table>
+      <table>
+      <thead>
+      <tr class="header">
+      <th></th>
+      <th>x1</th>
+      <th>x2</th>
+      <th>x3</th>
+      <th>C1</th>
+      <th>C2</th>
+      <th>C3</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="odd">
+      <td>S1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      </tr>
+      <tr class="even">
+      <td>S1'</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>0</td>
+      </tr>
+      <tr class="odd">
+      <td>S2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      </tr>
+      <tr class="even">
+      <td>S2'</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      <td>0</td>
+      </tr>
+      <tr class="odd">
+      <td>S3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      </tr>
+      <tr class="even">
+      <td>S3'</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>2</td>
+      </tr>
+      </tbody>
+      </table>
+      <p>So we can construct our new integers in polynomial time. We want to show that <span class="math inline">\phi</span> is SAT if and only if <span class="math inline">(v_i, v_i&#39;, s_j, s_j&#39;, t) \in L_{SUB-SUM}</span></p>
+      <h5 id="section">=&gt;</h5>
+      <p>Assume <span class="math inline">\phi</span> is in SAT. Let <span class="math inline">x</span> be an SAT assignment. Select the following numbers for the set:</p>
+      <ul>
+      <li>if <span class="math inline">x_i = T</span>, select <span class="math inline">v_i</span></li>
+      <li>if <span class="math inline">x_i = F</span>, select <span class="math inline">v_i&#39;</span></li>
+      <li>if <span class="math inline">C_i</span> is satisfied by 1 literal, select <span class="math inline">s_i, s_i&#39;</span>, if by 2 select <span class="math inline">s_i&#39;</span>, and if satisfied by 3, selecte <span class="math inline">s_i</span>.</li>
+      </ul>
+      <p>So the subset adds up to <span class="math inline">t</span>. There are exactly one of <span class="math inline">v_i</span>, <span class="math inline">v_i&#39;</span> that belongs to <span class="math inline">S</span> for each <span class="math inline">i</span>.</p>
+      <h5 id="section-1">&lt;=</h5>
+      <p>Let <span class="math inline">x</span> be the assignment, where if <span class="math inline">v_i \in S</span>, <span class="math inline">x_i = T</span>, and if <span class="math inline">v_i \in S</span>, set <span class="math inline">x_i = F</span>. This implies that <span class="math inline">x</span> is a satisfying assignment.</p>
+      <h2 id="knapsack">Knapsack</h2>
+      <h4 id="input-1">Input</h4>
+      <ul>
+      <li><span class="math inline">v_1, ..., v_n \in \mathbb N</span>, our values of the items</li>
+      <li><span class="math inline">v_1, ..., v_n \in \mathbb N</span>, our weights</li>
+      <li><span class="math inline">W</span>, our capacity.</li>
+      </ul>
+      <h4 id="output-1">Output:</h4>
+      <p><span class="math display">\displaystyle 
+      \max_{S \subseteq [n]} \sum_{i \in S} v_i : \sum_{i \in S} w_i \leq W
+      </span></p>
+      <p>Let the language of the this problem be our <span class="math inline">v_i, w_i, W, K</span> such that there exists <span class="math inline">S \subseteq [n]</span> such that</p>
+      <p><span class="math display">\displaystyle 
+      \sum_{i \in S} v_i \geq k
+      </span></p>
+      <p><span class="math display">\displaystyle 
+      \sum_{i \in S} w_i \geq W
+      </span></p>
+      <p>Let <span class="math inline">v_i = a_i = w_i</span>, <span class="math inline">W = k = t</span></p>
+      <p>Then <span class="math inline">\sum_{i \in S} v_i \geq t</span> and <span class="math inline">\sum_{i \in S} w_i \leq t</span>.</p>
+                </div>   
+  </body>
+</html>
