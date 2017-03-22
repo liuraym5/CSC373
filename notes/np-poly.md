@@ -65,7 +65,7 @@ if $x$ is in $L$ in $O(n^k)$.
 
 (In our more casual discussions: For an input of size $n$, $A$ runs in $O(n^k)$)
 
-We can now present the folloowing theorem (without proof)$^1$
+We can now present the following theorem (without proof)$^1$
 
 > $P = \{L : L$ is accepted by a polynomial time algorithm $\}$
 
