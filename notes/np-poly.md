@@ -38,3 +38,37 @@ algorithm to solve it in time $O(n^k)$ for some constant $k$.
 We define the complexity class $P$ as the set of concrete decision problems that
 are polynomial time solvable.
 
+## Languages
+
+Recall what a formal language $L$ over an alphabet $\Sigma$ is (if you don't
+remember, here's a [wiki](https://en.wikipedia.org/wiki/Formal_language) article)
+
+For any decision problem $Q$, as a language $L$ over $\Sigma = \{0,1\}$,
+where $L = \{ x \in \Sigma^* : Q(x) = 1\}$.
+
+We say an algorithm $A$ accepts a string $x \in \{0,1\}$ if $A(x) = 1$, and
+rejects it otherwise.
+
+An language $L$ is **decided** by an algorithm $A$ if
+
+- $x \in L \rightarrow A(x) = 1$
+- $y \notin L \rightarrow A(y) = 0$
+
+(As an aside, this seems very similar to what it means to be representable in
+formal logic)
+
+## Decidability in Polynomial Time
+
+A language $L$ is decided in polynomial time by an algorithm $A$ if there exists
+a constant $k$ such that for any string length $n$ in $\{0, 1\}^*$, $A$ decides
+if $x$ is in $L$ in $O(n^k)$.
+
+(In our more casual discussions: For an input of size $n$, $A$ runs in $O(n^k)$)
+
+We can now present the folloowing theorem (without proof)$^1$
+
+> $P = \{L : L$ is accepted by a polynomial time algorithm $\}$
+
+---
+
+$^1$ See CLRS Theorem 34.2 for the proof.

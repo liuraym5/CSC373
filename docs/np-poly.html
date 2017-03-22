@@ -46,6 +46,25 @@
       <p>We say a <em>concrete problem</em> is polynomial time solvable if there exists an algorithm to solve it in time <span class="math inline">O(n^k)</span> for some constant <span class="math inline">k</span>.</p>
       <h2 id="the-complexity-class-p">The complexity class P</h2>
       <p>We define the complexity class <span class="math inline">P</span> as the set of concrete decision problems that are polynomial time solvable.</p>
+      <h2 id="languages">Languages</h2>
+      <p>Recall what a formal language <span class="math inline">L</span> over an alphabet <span class="math inline">\Sigma</span> is (if you don't remember, here's a <a href="https://en.wikipedia.org/wiki/Formal_language">wiki</a> article)</p>
+      <p>For any decision problem <span class="math inline">Q</span>, as a language <span class="math inline">L</span> over <span class="math inline">\Sigma = \{0,1\}</span>, where <span class="math inline">L = \{ x \in \Sigma^* : Q(x) = 1\}</span>.</p>
+      <p>We say an algorithm <span class="math inline">A</span> accepts a string <span class="math inline">x \in \{0,1\}</span> if <span class="math inline">A(x) = 1</span>, and rejects it otherwise.</p>
+      <p>An language <span class="math inline">L</span> is <strong>decided</strong> by an algorithm <span class="math inline">A</span> if</p>
+      <ul>
+      <li><span class="math inline">x \in L \rightarrow A(x) = 1</span></li>
+      <li><span class="math inline">y \notin L \rightarrow A(y) = 0</span></li>
+      </ul>
+      <p>(As an aside, this seems very similar to what it means to be representable in formal logic)</p>
+      <h2 id="decidability-in-polynomial-time">Decidability in Polynomial Time</h2>
+      <p>A language <span class="math inline">L</span> is decided in polynomial time by an algorithm <span class="math inline">A</span> if there exists a constant <span class="math inline">k</span> such that for any string length <span class="math inline">n</span> in <span class="math inline">\{0, 1\}^*</span>, <span class="math inline">A</span> decides if <span class="math inline">x</span> is in <span class="math inline">L</span> in <span class="math inline">O(n^k)</span>.</p>
+      <p>(In our more casual discussions: For an input of size <span class="math inline">n</span>, <span class="math inline">A</span> runs in <span class="math inline">O(n^k)</span>)</p>
+      <p>We can now present the folloowing theorem (without proof)<span class="math inline">^1</span></p>
+      <blockquote>
+      <p><span class="math inline">P = \{L : L</span> is accepted by a polynomial time algorithm <span class="math inline">\}</span></p>
+      </blockquote>
+      <hr />
+      <p><span class="math inline">^1</span> See CLRS Theorem 34.2 for the proof.</p>
           </div>   
   </body>
 </html>
