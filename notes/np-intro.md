@@ -51,15 +51,6 @@ _certificate_. The problem is NP if we can check if the certificate is correct
 in polynomial time with respect to the size of the input $I$ (so it runs in
 $O(|I|^k)$).
 
-### NPC
-
-[Informally] These are problems in NP and are as "hard" as any problem in NP.
-
-[Formally] A language $L \subseteq \{0,1\}^*$ is NP-complete if 
-
-1. $L \in NP$
-2. $L' \leq_p L \ \forall \ L' \in NP$
-
 ### NP-hard
 
 A language $L$ that satisfies property 2, but not necessarily 1 is considered
@@ -70,6 +61,17 @@ We can cast an optimization problem as a decision problem by adding a bound on
 the value we are optimizing. If an optimization problem is easy, then its
 related decision problem is also easy, and if a decision problem is hard, then
 so is the optimization problem.
+
+### NPC
+
+[Informally] These are problems in NP and are as "hard" as any problem in NP.
+
+[Formally] A language $L \subseteq \{0,1\}^*$ is NP-complete if 
+
+1. $L \in NP$
+2. $L' \leq_p L \ \forall \ L' \in NP$
+
+---
 
 $P \subseteq NP$. This is because the verification step can just be solving the
 problem. The big question is whether $P \subset NP$ or $P = NP$
