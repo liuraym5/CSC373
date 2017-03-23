@@ -78,20 +78,66 @@ Satisfying 2 but not 1 means that $L$ is $NP$-hard.
 
 ## Circuit-SAT
 
-<small>This is a slightly long proof, but bear with me! For some parts of the
+<small>This is a very technical proof, so I wont present it (CLRS does not
+either). Instead, let's outline it! For some steps of the
 proof, I'll place it under a "spoiler" box (click the arrow to expand). Try to
 put together the next steps, take a guess, or use it when reviewing!</small>
 
 
 ### Definition
 
+We use $NOT$, $AND$, and $OR$ gates in a circuit, and each variable takes in
+either 0 (false) or 1 (true). A _truth assignment_ function is a function that
+assigns to each variable $x_i$ either a 1 or a 0. A _satisfying assignment_ is
+an assignment function that results in $1$ at the circuit output. Our goal is to
+find a _satisfying assignment_  given a circuit. We frame our problem as
+follows:
+
+> Given a boolean combinational circuit composed of $AND$, $OR$, and $NOT$
+> gates, is it satisfiable?
+
 ### Language
+
+$\mathcal L_{CIRCUIT-SAT} = \{ \langle C \rangle : C$ is a satisfiable boolean
+combinational circuit $\}$
 
 ### $\mathcal L_{CIRCUIT-SAT} \in NP$
 
-### Circuit-SAT is $NP$-hard
+Each variable has 2 options. It can be a 1 or a 0. So if you have $k$ variables,
+there are $2^k$ options. Checking each option takes $\Omega(2^k)$ time, which is
+not polynomial. Since the definition for $NPC$ has two [parts](#np-completeness)
 
-### Circuit-SAT is $NP$-complete
+### 1. Circuit-SAT is $NP$
+
+We need to provide a two-input polynomial time algorithm $A$ that verifies
+$\mathcal L_{CIRCUIT-SAT}$. One of the inputs is a boolean combinational circuit
+$C$, and the other is an assignment function $V:$ inputs of $C \rightarrow
+\{0,1\}$.
+
+$A$ is as follows:
+
+- For each gate, check that the value provided by the certificate on the output
+    wire is correctly computed as a function of the values on the input wires.
+- If the outpt of the circuit is 1, $A(C,V) = 1$, otherwise 0.
+
+Because of the way we formed the algorithm, we have these two guarantees.
+
+1. If a satisfiable circuit $C$ is given to $A$, there is a certificate of
+   length polynomial (with respect to $C$) and causes $A$ to output 1.
+2. If an unsatisfiable input is given, then no certificate can trick $A$ into
+   outputting $1$.
+
+   And so $A$ runs in polynomial time and so $\mathcal L_{CIRCUIT-SAT} \in NP$
+
+### 2. Circuit-SAT is $NP$-hard
+
+We need to show that every problem in $NP$ is polynomial-time reducible to 
+$\mathcal L_{CIRCUIT-SAT}$. The idea is to manipulate the state of the computer
+a bunch of times and doing a bunch of other stuff. I think that's a good enough
+explanation for now 😛. Please make a pull request to add this.
+
+
+By 1. and 2. $\mathcal L_{CIRCUIT-SAT}$ is in $NPC$
 
 
 ---

@@ -42,8 +42,8 @@
       <li><a href="#definition">Definition</a></li>
       <li><a href="#language">Language</a></li>
       <li><a href="#mathcal-l_circuit-sat-in-np"><span class="math inline">\mathcal L_{CIRCUIT-SAT} \in NP</span></a></li>
-      <li><a href="#circuit-sat-is-np-hard">Circuit-SAT is <span class="math inline">NP</span>-hard</a></li>
-      <li><a href="#circuit-sat-is-np-complete">Circuit-SAT is <span class="math inline">NP</span>-complete</a></li>
+      <li><a href="#circuit-sat-is-np">1. Circuit-SAT is <span class="math inline">NP</span></a></li>
+      <li><a href="#circuit-sat-is-np-hard">2. Circuit-SAT is <span class="math inline">NP</span>-hard</a></li>
       </ul></li>
       </ul></li>
       </ul>
@@ -82,12 +82,32 @@ o----|-|----------|---/  |
 </ol>
 <p>The class of languages that satisfy 1 and 2 are defined as <span class="math inline">NPC</span> Satisfying 2 but not 1 means that <span class="math inline">L</span> is <span class="math inline">NP</span>-hard.</p>
 <h2 id="circuit-sat">Circuit-SAT</h2>
-<p><small>This is a slightly long proof, but bear with me! For some parts of the proof, I'll place it under a &quot;spoiler&quot; box (click the arrow to expand). Try to put together the next steps, take a guess, or use it when reviewing!</small></p>
+<p><small>This is a very technical proof, so I wont present it (CLRS does not either). Instead, let's outline it! For some steps of the proof, I'll place it under a &quot;spoiler&quot; box (click the arrow to expand). Try to put together the next steps, take a guess, or use it when reviewing!</small></p>
 <h3 id="definition">Definition</h3>
+<p>We use <span class="math inline">NOT</span>, <span class="math inline">AND</span>, and <span class="math inline">OR</span> gates in a circuit, and each variable takes in either 0 (false) or 1 (true). A <em>truth assignment</em> function is a function that assigns to each variable <span class="math inline">x_i</span> either a 1 or a 0. A <em>satisfying assignment</em> is an assignment function that results in <span class="math inline">1</span> at the circuit output. Our goal is to find a <em>satisfying assignment</em> given a circuit. We frame our problem as follows:</p>
+<blockquote>
+<p>Given a boolean combinational circuit composed of <span class="math inline">AND</span>, <span class="math inline">OR</span>, and <span class="math inline">NOT</span> gates, is it satisfiable?</p>
+</blockquote>
 <h3 id="language">Language</h3>
+<p><span class="math inline">\mathcal L_{CIRCUIT-SAT} = \{ \langle C \rangle : C</span> is a satisfiable boolean combinational circuit <span class="math inline">\}</span></p>
 <h3 id="mathcal-l_circuit-sat-in-np"><span class="math inline">\mathcal L_{CIRCUIT-SAT} \in NP</span></h3>
-<h3 id="circuit-sat-is-np-hard">Circuit-SAT is <span class="math inline">NP</span>-hard</h3>
-<h3 id="circuit-sat-is-np-complete">Circuit-SAT is <span class="math inline">NP</span>-complete</h3>
+<p>Each variable has 2 options. It can be a 1 or a 0. So if you have <span class="math inline">k</span> variables, there are <span class="math inline">2^k</span> options. Checking each option takes <span class="math inline">\Omega(2^k)</span> time, which is not polynomial. Since the definition for <span class="math inline">NPC</span> has two <a href="#np-completeness">parts</a></p>
+<h3 id="circuit-sat-is-np">1. Circuit-SAT is <span class="math inline">NP</span></h3>
+<p>We need to provide a two-input polynomial time algorithm <span class="math inline">A</span> that verifies <span class="math inline">\mathcal L_{CIRCUIT-SAT}</span>. One of the inputs is a boolean combinational circuit <span class="math inline">C</span>, and the other is an assignment function <span class="math inline">V:</span> inputs of <span class="math inline">C \rightarrow \{0,1\}</span>.</p>
+<p><span class="math inline">A</span> is as follows:</p>
+<ul>
+<li>For each gate, check that the value provided by the certificate on the output wire is correctly computed as a function of the values on the input wires.</li>
+<li>If the outpt of the circuit is 1, <span class="math inline">A(C,V) = 1</span>, otherwise 0.</li>
+</ul>
+<p>Because of the way we formed the algorithm, we have these two guarantees.</p>
+<ol type="1">
+<li>If a satisfiable circuit <span class="math inline">C</span> is given to <span class="math inline">A</span>, there is a certificate of length polynomial (with respect to <span class="math inline">C</span>) and causes <span class="math inline">A</span> to output 1.</li>
+<li>If an unsatisfiable input is given, then no certificate can trick <span class="math inline">A</span> into outputting <span class="math inline">1</span>.</li>
+</ol>
+<p>And so <span class="math inline">A</span> runs in polynomial time and so <span class="math inline">\mathcal L_{CIRCUIT-SAT} \in NP</span></p>
+<h3 id="circuit-sat-is-np-hard">2. Circuit-SAT is <span class="math inline">NP</span>-hard</h3>
+<p>We need to show that every problem in <span class="math inline">NP</span> is polynomial-time reducible to <span class="math inline">\mathcal L_{CIRCUIT-SAT}</span>. The idea is to manipulate the state of the computer a bunch of times and doing a bunch of other stuff. I think that's a good enough explanation for now 😛. Please make a pull request to add this.</p>
+<p>By 1. and 2. <span class="math inline">\mathcal L_{CIRCUIT-SAT}</span> is in <span class="math inline">NPC</span></p>
 <hr />
 <ul>
 <li><span class="math inline">^1</span> CLRS Lemma 34.3</li>
