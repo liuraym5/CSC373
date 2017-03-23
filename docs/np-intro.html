@@ -49,6 +49,8 @@
       a \Rightarrow c(P(a)) \in \{0,1\} 
       </span></p>
       <p>Both <span class="math inline">P</span> and <span class="math inline">c</span> take polynomial time, and so we have a way to decide <span class="math inline">A</span> in polynomial time.</p>
+      <h3 id="leq_p"><span class="math inline">\leq_p</span></h3>
+      <p>We say a language <span class="math inline">L_1</span> is <a href="np-reductions.html"><em>polynomial time reducible</em></a> to a language <span class="math inline">L_2</span>, and write <span class="math inline">L_1 \leq_p L_2</span> when there exists a polynomial-time computable function <span class="math inline">f: \{0,1\}^* \rightarrow \{0,1\}^*</span> such that <span class="math inline">x \in L_1</span> if and only if <span class="math inline">f(x) \in L_2</span></p>
       <h3 id="p">P</h3>
       <p>This is the class of problems that are solvable in polynomial time ($O(n^k)) for a constant <span class="math inline">k</span> and <span class="math inline">n</span> is the size of the input). This is more formally defined <a href="np-poly.html">here</a>.</p>
       <h3 id="verification-algorithm"><a href="np-polyver.html">Verification Algorithm</a></h3>

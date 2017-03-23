@@ -41,6 +41,13 @@ $$
 Both $P$ and $c$ take polynomial time, and so we have a way to decide $A$ in
 polynomial time.
 
+### $\leq_p$
+
+We say a language $L_1$ is [_polynomial time reducible_](np-reductions.html) to a language $L_2$, and
+write $L_1 \leq_p L_2$ when there exists a polynomial-time computable function
+$f: \{0,1\}^* \rightarrow \{0,1\}^*$ such that $x \in L_1$ if and only if $f(x)
+\in L_2$
+
 ### P
 
 This is the class of problems that are solvable in polynomial time ($O(n^k)) for
