@@ -1,6 +1,10 @@
 ---
-prev: dijkstra.html 
-next: np-poly.html
+prev:
+  link: dijkstra.html
+  title: Dijkstra
+next:
+  link: np-poly.html
+  title: Polynomials
 ---
 
 # Introduction to NP-Completeness

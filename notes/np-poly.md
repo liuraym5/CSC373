@@ -1,6 +1,10 @@
 ---
-prev: np-intro.html
-next: np-polyver.html
+prev:
+  link: np-intro.html
+  title: Intro to NP
+next:
+  link: np-polyver.html
+  title: Polynomial Verification
 ---
 
 

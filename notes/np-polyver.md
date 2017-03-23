@@ -1,6 +1,10 @@
 ---
-prev: np-poly.html
-next: np-complete.html
+prev:
+  link: np-poly.html
+  title: Polynomial Verification
+next:
+  link: np-complete.html
+  title: NP Complete
 ---
 
 # Polynomial-time Verification

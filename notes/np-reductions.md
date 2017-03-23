@@ -1,4 +1,8 @@
+---
+prev: np-complete.html
+next: np-intro.html
 
+---
 
 ## Subset Sum
 

@@ -1,3 +1,14 @@
+---
+prev: 
+  link: np-polyver.html
+  title: Polynomial Verification
+next:
+  link: np-reductions.html
+  title: Reductions
+
+---
+
+
 # NP-complete problems:
 
 ## A List of NP-complete problems
