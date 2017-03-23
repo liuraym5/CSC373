@@ -7,7 +7,7 @@ next:
   title: Polynomials
 ---
 
-# Introduction to NP-Completeness
+# Introduction to Complexity 
 
 ## Definitions
 
