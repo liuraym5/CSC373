@@ -23,6 +23,6 @@ pull request on this repo's [github](https://github.com/isthisnagee/CSC373)
     * [Intro](np-intro.html)
     * [$P$](np-poly.html)
     * [Polynomial-time Verification](np-polyver.html)
+    * [NP-complete Problems](np-complete.html)
 * In progress
     * [Reductions](np-reductions.html)
-    * [NP-complete Problems](np-complete.html)
