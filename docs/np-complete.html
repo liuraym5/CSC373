@@ -32,60 +32,66 @@
           </ul>
         </nav>
               </header>
-      <h1 id="np-complete-problems">NP-complete problems:</h1>
-      <h2 id="a-list-of-np-complete-problems">A List of NP-complete problems</h2>
-      <ul>
-      <li>Shortest vs longest simple paths: Shortest path can be found in <span class="math inline">O(VE)</span>, but the longest simple path is NP-complete.</li>
-      <li>Euler tour vs hamiltonian cycle: An <strong>Euler tour</strong> of a connected, directed graph is a cycle that traverses each <em>edge</em> once, we can solve in <span class="math inline">O(E)</span> a hamiltonian cycle is a simple cycle that visits each <em>vertex</em> exactly once. Determining if a graph has a hamiltonian cyle is NP-complete.</li>
-      <li>2-CNF vs 3-CNF satisfiability: 2-CNF can be solved in polynomial time, but 3-CNF is np complete.</li>
+            <ul>
+      <li><a href="#np-completeness-and-reducibility">NP Completeness and Reducibility</a><ul>
+      <li><a href="#reducibility">Reducibility</a><ul>
+      <li><a href="#polynomial-time-reducible">Polynomial-time reducible</a></li>
+      </ul></li>
+      <li><a href="#np-completeness">NP-completeness</a></li>
+      <li><a href="#circuit-sat">Circuit-SAT</a><ul>
+      <li><a href="#definition">Definition</a></li>
+      <li><a href="#language">Language</a></li>
+      <li><a href="#mathcal-l_circuit-sat-in-np"><span class="math inline">\mathcal L_{CIRCUIT-SAT} \in NP</span></a></li>
+      <li><a href="#circuit-sat-is-np-hard">Circuit-SAT is <span class="math inline">NP</span>-hard</a></li>
+      <li><a href="#circuit-sat-is-np-complete">Circuit-SAT is <span class="math inline">NP</span>-complete</a></li>
+      </ul></li>
+      </ul></li>
       </ul>
-      <h2 id="defintions">Defintions</h2>
-      <h3 id="p">P</h3>
-      <p>These are problems that can be solved in <span class="math inline">O(n^k)</span> for some constant <span class="math inline">k</span>, where <span class="math inline">n</span> is the size of the input problem.</p>
-      <h3 id="np">NP</h3>
-      <p>These are the set of problems that are verifiable in polynomial time. So if we are given a <em>certificate</em> of a solution, then we can verify that the certificate is correct in polynomial time of input size.</p>
-      <h3 id="np-complete">NP-Complete</h3>
-      <p>A problem is in the class NPC if it is in NP and it is as &quot;hard&quot; as any problem in NP.</p>
-      <blockquote>
-      <p>If <em>any</em> NP-complete problem can be solved in polynomial time, then every problem in NP has a polynomial time algorithm.</p>
-      </blockquote>
-      <h2 id="showing-that-problems-are-npc">Showing that problems are NPC</h2>
-      <p>We rely on three key concepts:</p>
-      <h3 id="decision-problems-vs-optimization-problems">1. Decision problems vs optimization problems</h3>
-      <p>We can relate an optimization problem to a decision problem by adding a bound <span class="math inline">b</span> and asking if we can do better than <span class="math inline">b</span>.</p>
-      <h3 id="reductions">2. Reductions</h3>
-      <p>Consider a decision problem <span class="math inline">A</span>, which we would like to solve in polynomial time. Suppose we know how to solve a decision problem <span class="math inline">B</span> in polynomial time. And suppose we have a procedure that transforms any instance <span class="math inline">\alpha</span> of <span class="math inline">A</span> into an instance <span class="math inline">\beta</span> of <span class="math inline">B</span> such that:</p>
-      <ul>
-      <li>The transformation takes polynomial time</li>
-      <li>The answers are the same. The answer for <span class="math inline">\alpha</span> is yes iff the answer for <span class="math inline">\beta</span> is yes.</li>
-      </ul>
-      <h2 id="vertex-covers">Vertex Covers</h2>
-      <p>Let <span class="math inline">G=(V,E)</span> be an undirected graph. <span class="math inline">S \subset V</span> is a vertex cover if every edge <span class="math inline">e \in E</span> is incident on at least one node in <span class="math inline">S</span>, and <span class="math inline">|S| = k</span>, then we call it a <span class="math inline">k</span>-cover.</p>
-      <p>The language is as follows: <span class="math inline">L_{VC} = \{ &lt;G,k&gt; | G</span> has a <span class="math inline">k</span>-cover <span class="math inline">\}</span>.</p>
-      <p>We claim <span class="math inline">L_{VC}</span> is NP-complete.</p>
-      <h4 id="proof">Proof</h4>
-      <ol type="1">
-      <li>[ 1 ] Certificate set <span class="math inline">S \subset V(G)</span>. Verifier checks <span class="math inline">|S|=k</span> and that every edge is incident on a vertex in <span class="math inline">S</span>. Clearly the certificate is of polynomial size and the verifier runs in polynomial time.</li>
-      <li>[ 2 ] We'll show that <span class="math inline">L_{CLIQUE} \leq_p L_{VC}</span> Given <span class="math inline">G</span>, <span class="math inline">k</span>, we need to construct <span class="math inline">G&#39;</span> and <span class="math inline">k&#39;</span> such that <span class="math inline">G</span> has a <span class="math inline">k</span>-clique iff <span class="math inline">G&#39;</span> has a <span class="math inline">k-</span>cover. Let <span class="math inline">V&#39; = V</span>, <span class="math inline">E&#39;</span> be <span class="math inline">(v 2) - E</span>, and <span class="math inline">k&#39; = n-k</span>. Then <span class="math inline">G</span> has a <span class="math inline">k-</span>clique S, then we need to show <span class="math inline">V - S</span> is a vertex cover in <span class="math inline">G&#39;</span>. <span class="math inline">\{u,v\} \in E&#39;</span> iff ${ u,v } E u S v S $. Let <span class="math inline">G&#39;</span> have <span class="math inline">(n-k)</span>-cover_</li>
-      </ol>
-      <p>## Hamiltonian Cycles</p>
-      <p>A Hamiltonian cycle is a simple cycle that goes through every vertex.</p>
-      <p>Fact: The language of hamiltonian cycles <span class="math inline">\{ &lt;G&gt; | G</span> has a hamiltonian cycle <span class="math inline">\} \in NPC</span>.</p>
-      <h3 id="hamiltonian-path-and-cycle">Hamiltonian Path and Cycle</h3>
-      <p>We'll show that a hamiltonian path reduces to hamiltonian cycles. Let <span class="math inline">G=(V,E)</span> be given, and we want to construct <span class="math inline">G&#39;</span> such that if <span class="math inline">G</span> has a hamiltonian cycle, then <span class="math inline">G&#39;</span> has a hamiltonian path.</p>
-      <p>Pick an arbitrary <span class="math inline">v \in V</span>, and split it into <span class="math inline">v, v&#39;</span>, where the neighbors of <span class="math inline">v</span> are the neighbors or <span class="math inline">v&#39;</span> , and <span class="math inline">v</span> is not connected to <span class="math inline">v&#39;</span> via an edge. We introduce to new noes <span class="math inline">f,s</span> and connect <span class="math inline">f</span> to <span class="math inline">v</span> and <span class="math inline">s</span> to <span class="math inline">v&#39;</span></p>
-      <pre><code>
-                s  - v&#39;  -
-         /               \ \
-      v  -  =&gt;          /
-         \      f  - v  -
-                         \</code></pre>
-      <h4 id="proof-1">Proof</h4>
-      <ul>
-      <li>[=&gt;] Given a hamiltonian cycle, add <span class="math inline">f, v&#39;</span> to the beginning and <span class="math inline">v&#39;,s</span> to the end, and this is a hamiltonian path. <span class="math display">\displaystyle ( v,u_i, v ) =&gt; ( f,v,u_i, v&#39;, s ) </span></li>
-      </ul>
-      <p>Let's show that the hamiltonian cycle reduces to TSP. Given <span class="math inline">G=(V,E)</span>, undirected, we need to create <span class="math inline">G&#39;,c,k</span>.</p>
-      <p>Let <span class="math inline">G&#39;</span> be a complete graph on <span class="math inline">V</span> and the cost of an edge in <span class="math inline">E&#39;</span> is 0 if it's in <span class="math inline">E</span>, and 1 otherwise. Then <span class="math inline">G&#39;,c</span> has a tour of cost o if and only if <span class="math inline">G</span> has a hamiltonian cycle, ad the construction is in polynomial time.</p>
+            <h1 id="np-completeness-and-reducibility">NP Completeness and Reducibility</h1>
+<p><span class="math inline">NP</span>-complete problems (<span class="math inline">NPC</span>) are a class of problems such that if any can be solved in polynomial time, then <em>every</em> problem in <span class="math inline">NP</span> has a polynomial time solution (!!).</p>
+<p>This set of problems are the &quot;hardest&quot; problems in <span class="math inline">NP</span>. In the <a href="np-polyver.html">previous</a> section, we discussed polynomial time verification. We'll talk about polynomial time <em>reductions</em> in this section.</p>
+<h2 id="reducibility">Reducibility</h2>
+<p>This is essentially a &quot;translation&quot; from one problem <span class="math inline">Q</span> to another problem <span class="math inline">Q&#39;</span>. For example, <span class="math inline">ax+b=0</span> can be transformed to <span class="math inline">0x^2+ax+b=0</span>. When we do our &quot;translation&quot;, we want to preserve difficulty of problems, so that we can say <span class="math inline">Q</span> is no harder to solve than <span class="math inline">Q&#39;</span>. We're saying that <span class="math inline">Q&#39;</span> is <span class="math inline">Q</span> with a different paint job.</p>
+<h3 id="polynomial-time-reducible">Polynomial-time reducible</h3>
+<p>Because &quot;easy&quot; things run in polynomial time, we want our &quot;translations&quot; to happen in polynomial time, so that if our problems are easy, then the translation won't change that.</p>
+<p>We write <span class="math inline">L_1 \leq_p L_2</span> is <span class="math inline">L_1</span> is polynomial time reducible to <span class="math inline">L_2</span>. Our translation function <span class="math inline">f</span> is defined as follows</p>
+<ul>
+<li><span class="math inline">f: \{0,1\}^* \rightarrow \{0,1\}^*</span></li>
+<li><span class="math inline">x \in L_1</span> if and only if <span class="math inline">f(x) \in L_2</span></li>
+<li><span class="math inline">x \notin L_1</span> then <span class="math inline">f(x) \notin L_2</span></li>
+</ul>
+<p>We call <span class="math inline">f</span> the reduction function, and <span class="math inline">F</span> that computes <span class="math inline">f(x)</span> the <em>reduction algorithm</em></p>
+<pre><code>
+_______            ________
+{0,1}* |    f     |{0,1}*
+o -----|----------|-&gt;o
+_____  |          |______
+   o-|-|----------|---\  |
+     | |          |    o |
+o----|-|----------|---/  |
+  o--|-|----------|----&gt;o|
+ L1  | |          | L2   |</code></pre>
+<h4 id="reducibility-and-p">Reducibility and <span class="math inline">P</span></h4>
+<p>If <span class="math inline">L_1,L_2 \subseteq \{0,1\}^*</span> are languages such that <span class="math inline">L_1 \leq_p L_2</span>, then <span class="math inline">L_2 \in P \Rightarrow L_1 \in P</span> (proof <span class="math inline">^1</span>)</p>
+<h2 id="np-completeness">NP-completeness</h2>
+<p>We can now relate problems by saying that one is at least as hard as another (within polynomial time). So <span class="math inline">L_1 \leq_p L_2</span>, then <span class="math inline">L_1</span> is not more than a polynomial factor harder than <span class="math inline">L_2</span>. We can now properly define <span class="math inline">NP</span>-complete:</p>
+<p>A language <span class="math inline">L \subseteq \{0,1\}^*</span> is <span class="math inline">NP</span>-complete if</p>
+<ol type="1">
+<li><span class="math inline">L \in NP</span></li>
+<li><span class="math inline">L&#39; \leq_p L \ \forall \ L&#39; \in NP</span></li>
+</ol>
+<p>The class of languages that satisfy 1 and 2 are defined as <span class="math inline">NPC</span> Satisfying 2 but not 1 means that <span class="math inline">L</span> is <span class="math inline">NP</span>-hard.</p>
+<h2 id="circuit-sat">Circuit-SAT</h2>
+<p><small>This is a slightly long proof, but bear with me! For some parts of the proof, I'll place it under a &quot;spoiler&quot; box (click the arrow to expand). Try to put together the next steps, take a guess, or use it when reviewing!</small></p>
+<h3 id="definition">Definition</h3>
+<h3 id="language">Language</h3>
+<h3 id="mathcal-l_circuit-sat-in-np"><span class="math inline">\mathcal L_{CIRCUIT-SAT} \in NP</span></h3>
+<h3 id="circuit-sat-is-np-hard">Circuit-SAT is <span class="math inline">NP</span>-hard</h3>
+<h3 id="circuit-sat-is-np-complete">Circuit-SAT is <span class="math inline">NP</span>-complete</h3>
+<hr />
+<ul>
+<li><span class="math inline">^1</span> CLRS Lemma 34.3</li>
+</ul>
       <div class="flex pa4">
               <a href="np-polyver.html" class="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
           <svg class="w1" data-icon="chevronLeft" viewBox="0 0 32 32" style="fill:currentcolor">

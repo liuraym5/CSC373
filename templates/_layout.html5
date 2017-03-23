@@ -44,6 +44,9 @@
         </div>
         $endif$
       </header>
+      $if(toc)$
+      $toc$
+      $endif$
       $body$
       <div class="flex pa4">
       $if(prev)$

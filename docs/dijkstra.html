@@ -32,41 +32,49 @@
           </ul>
         </nav>
               </header>
-      <h1 id="dijkstras-algorithm">Dijkstra's Algorithm</h1>
-      <p>BFS finds the shortest path in a graph with unit lenght edges. With Dijkstra's algorithm, we adapt BFS so that we can handle graphs <span class="math inline">G = (V, E)</span> with edge lengths <span class="math inline">l(e)</span> as <em>positive integers</em>.</p>
-      <p>I'll present the algorithm first, and then I'll discuss the aspects of it.</p>
-      <h2 id="algorithm">Algorithm</h2>
-      <h3 id="input">Input</h3>
-      <ul>
-      <li>A graph <span class="math inline">G = (V,E)</span></li>
-      <li>Positive edge lengths <span class="math inline">\{l_e : e \in E\}</span></li>
-      <li>A starting verex <span class="math inline">v</span>.</li>
+            <ul>
+      <li><a href="#dijkstras-algorithm">Dijkstra's Algorithm</a><ul>
+      <li><a href="#algorithm">Algorithm</a><ul>
+      <li><a href="#input">Input</a></li>
+      <li><a href="#output">Output</a></li>
+      </ul></li>
+      </ul></li>
       </ul>
-      <h3 id="output">Output</h3>
-      <ul>
-      <li>For all vertices <span class="math inline">u</span> that can be reached from <span class="math inline">s</span>, <code>dist</code><span class="math inline">(u) = d(s,u)</span></li>
-      </ul>
-      <pre><code>def dijkstra(G,l,s):
-        V,E = G
-        dist = []  # an array of size |V|
-        prev = []  # an array of size |V|
-      
-        for u in V:
-            dist[u] = infty
-            prev[u] = null 
-      
-        dist[s] = 0
-      
-        H = queue(V)  $ the dist-values are keys
-        while H is not empty:
-          u = delete_min(H)  # return and remove the elem the with smallest key
-          for all edges e=(u,v) in E:
-              if dist(v) &gt; dist(u) + l(e):
-                  dist(v) = dist(u) + l(e)
-                  prev(v) = u
-                  # notifies queue that a the value for v has been decreased
-                  # accomodate the decrease in key value of the element
-                  decrease_key(H, v)</code></pre>
+            <h1 id="dijkstras-algorithm">Dijkstra's Algorithm</h1>
+<p>BFS finds the shortest path in a graph with unit lenght edges. With Dijkstra's algorithm, we adapt BFS so that we can handle graphs <span class="math inline">G = (V, E)</span> with edge lengths <span class="math inline">l(e)</span> as <em>positive integers</em>.</p>
+<p>I'll present the algorithm first, and then I'll discuss the aspects of it.</p>
+<h2 id="algorithm">Algorithm</h2>
+<h3 id="input">Input</h3>
+<ul>
+<li>A graph <span class="math inline">G = (V,E)</span></li>
+<li>Positive edge lengths <span class="math inline">\{l_e : e \in E\}</span></li>
+<li>A starting verex <span class="math inline">v</span>.</li>
+</ul>
+<h3 id="output">Output</h3>
+<ul>
+<li>For all vertices <span class="math inline">u</span> that can be reached from <span class="math inline">s</span>, <code>dist</code><span class="math inline">(u) = d(s,u)</span></li>
+</ul>
+<pre><code>def dijkstra(G,l,s):
+  V,E = G
+  dist = []  # an array of size |V|
+  prev = []  # an array of size |V|
+
+  for u in V:
+      dist[u] = infty
+      prev[u] = null 
+
+  dist[s] = 0
+
+  H = queue(V)  $ the dist-values are keys
+  while H is not empty:
+    u = delete_min(H)  # return and remove the elem the with smallest key
+    for all edges e=(u,v) in E:
+        if dist(v) &gt; dist(u) + l(e):
+            dist(v) = dist(u) + l(e)
+            prev(v) = u
+            # notifies queue that a the value for v has been decreased
+            # accomodate the decrease in key value of the element
+            decrease_key(H, v)</code></pre>
       <div class="flex pa4">
                    </div>
           </div>   

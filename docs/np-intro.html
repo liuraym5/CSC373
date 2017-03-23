@@ -32,44 +32,59 @@
           </ul>
         </nav>
               </header>
-      <h1 id="introduction-to-np-completeness">Introduction to NP-Completeness</h1>
-      <h2 id="definitions">Definitions</h2>
-      <h3 id="optimization-problems">Optimization Problems</h3>
-      <p>These are problems in which each legal solution has a value, and we want to find a legal solution with the <em>best</em> value.</p>
-      <h3 id="decision-problems">Decision Problems</h3>
-      <p>These are problems where the answer is simply 1 or 0 (yes or no).</p>
-      <h3 id="reductions">Reductions</h3>
-      <p>This is the notion of showing that a problem is no harder or easier than another. Suppose we have two decision problems, <span class="math inline">A</span>, and <span class="math inline">B</span>, with instances <span class="math inline">\alpha</span> and <span class="math inline">\beta</span>, respectively. Suppose we have a procedure <span class="math inline">P</span> that takes instances of <span class="math inline">A</span> and transforms them to instances of <span class="math inline">B</span> (in very hand wavy notation, <span class="math inline">P: A \rightarrow B</span>). Let <span class="math inline">P</span> have the following characteristics:</p>
-      <ul>
-      <li>P runs in polynomial time</li>
-      <li>The answer for <span class="math inline">\alpha</span> is yes iff the answer for <span class="math inline">P(\alpha)</span> is yes</li>
+            <ul>
+      <li><a href="#introduction-to-np-completeness">Introduction to NP-Completeness</a><ul>
+      <li><a href="#definitions">Definitions</a><ul>
+      <li><a href="#optimization-problems">Optimization Problems</a></li>
+      <li><a href="#decision-problems">Decision Problems</a></li>
+      <li><a href="#reductions">Reductions</a></li>
+      <li><a href="#leq_p"><span class="math inline">\leq_p</span></a></li>
+      <li><a href="#p">P</a></li>
+      <li><a href="#verification-algorithm"><a href="np-polyver.html">Verification Algorithm</a></a></li>
+      <li><a href="#np">NP</a></li>
+      <li><a href="#np-hard">NP-hard</a></li>
+      <li><a href="#npc">NPC</a></li>
+      </ul></li>
+      </ul></li>
       </ul>
-      <p>Say we <em>know how to solve</em> <span class="math inline">B</span> <em>in polynomial time</em> (lets call this <span class="math inline">c</span>). Then using <span class="math inline">P</span>, we say <span class="math inline">A</span> is just as easy to solve.</p>
-      <p><span class="math display">\displaystyle 
-      a \Rightarrow c(P(a)) \in \{0,1\} 
-      </span></p>
-      <p>Both <span class="math inline">P</span> and <span class="math inline">c</span> take polynomial time, and so we have a way to decide <span class="math inline">A</span> in polynomial time.</p>
-      <h3 id="leq_p"><span class="math inline">\leq_p</span></h3>
-      <p>We say a language <span class="math inline">L_1</span> is <a href="np-reductions.html"><em>polynomial time reducible</em></a> to a language <span class="math inline">L_2</span>, and write <span class="math inline">L_1 \leq_p L_2</span> when there exists a polynomial-time computable function <span class="math inline">f: \{0,1\}^* \rightarrow \{0,1\}^*</span> such that <span class="math inline">x \in L_1</span> if and only if <span class="math inline">f(x) \in L_2</span></p>
-      <h3 id="p">P</h3>
-      <p>This is the class of problems that are solvable in polynomial time ($O(n^k)) for a constant <span class="math inline">k</span> and <span class="math inline">n</span> is the size of the input). This is more formally defined <a href="np-poly.html">here</a>.</p>
-      <h3 id="verification-algorithm"><a href="np-polyver.html">Verification Algorithm</a></h3>
-      <p>A two argument algorithm that takes in a string and a certificate, and we say the algorithm <em>verifies</em> the string if there exists a certificate that makes it true. (<span class="math inline">A</span>(graph, graph has some property) is 1 if the graph has that property and 0 otherwise (or it could go on forever...?))</p>
-      <h3 id="np">NP</h3>
-      <p>This is the class of problems <em>verifiable</em> in polynomial time. Suppose we are given an input <span class="math inline">I</span> and a possible solution <span class="math inline">S</span>. We'll call <span class="math inline">S</span> the <em>certificate</em>. The problem is NP if we can check if the certificate is correct in polynomial time with respect to the size of the input <span class="math inline">I</span> (so it runs in <span class="math inline">O(|I|^k)</span>).</p>
-      <h3 id="np-hard">NP-hard</h3>
-      <p>A language <span class="math inline">L</span> that satisfies property 2, but not necessarily 1 is considered NP-hard</p>
-      <h3 id="npc">NPC</h3>
-      <p>[Informally] These are problems in NP and are as &quot;hard&quot; as any problem in NP.</p>
-      <p>[Formally] A language <span class="math inline">L \subseteq \{0,1\}^*</span> is NP-complete if</p>
-      <ol type="1">
-      <li><span class="math inline">L \in NP</span></li>
-      <li><span class="math inline">L&#39; \leq_p L \ \forall \ L&#39; \in NP</span></li>
-      </ol>
-      <hr />
-      <p>We can cast an optimization problem as a decision problem by adding a bound on the value we are optimizing. If an optimization problem is easy, then its related decision problem is also easy, and if a decision problem is hard, then so is the optimization problem.</p>
-      <p><span class="math inline">P \subseteq NP</span>. This is because the verification step can just be solving the problem. The big question is whether <span class="math inline">P \subset NP</span> or <span class="math inline">P = NP</span></p>
-      <p>If <em>any</em> NPC problem can be solved in polynomial time, then <em>every</em> problem in <span class="math inline">NP</span> has a polynomial time algorithm.</p>
+            <h1 id="introduction-to-np-completeness">Introduction to NP-Completeness</h1>
+<h2 id="definitions">Definitions</h2>
+<h3 id="optimization-problems">Optimization Problems</h3>
+<p>These are problems in which each legal solution has a value, and we want to find a legal solution with the <em>best</em> value.</p>
+<h3 id="decision-problems">Decision Problems</h3>
+<p>These are problems where the answer is simply 1 or 0 (yes or no).</p>
+<h3 id="reductions">Reductions</h3>
+<p>This is the notion of showing that a problem is no harder or easier than another. Suppose we have two decision problems, <span class="math inline">A</span>, and <span class="math inline">B</span>, with instances <span class="math inline">\alpha</span> and <span class="math inline">\beta</span>, respectively. Suppose we have a procedure <span class="math inline">P</span> that takes instances of <span class="math inline">A</span> and transforms them to instances of <span class="math inline">B</span> (in very hand wavy notation, <span class="math inline">P: A \rightarrow B</span>). Let <span class="math inline">P</span> have the following characteristics:</p>
+<ul>
+<li>P runs in polynomial time</li>
+<li>The answer for <span class="math inline">\alpha</span> is yes iff the answer for <span class="math inline">P(\alpha)</span> is yes</li>
+</ul>
+<p>Say we <em>know how to solve</em> <span class="math inline">B</span> <em>in polynomial time</em> (lets call this <span class="math inline">c</span>). Then using <span class="math inline">P</span>, we say <span class="math inline">A</span> is just as easy to solve.</p>
+<p><span class="math display">\displaystyle 
+a \Rightarrow c(P(a)) \in \{0,1\} 
+</span></p>
+<p>Both <span class="math inline">P</span> and <span class="math inline">c</span> take polynomial time, and so we have a way to decide <span class="math inline">A</span> in polynomial time.</p>
+<h3 id="leq_p"><span class="math inline">\leq_p</span></h3>
+<p>We say a language <span class="math inline">L_1</span> is <a href="np-reductions.html"><em>polynomial time reducible</em></a> to a language <span class="math inline">L_2</span>, and write <span class="math inline">L_1 \leq_p L_2</span> when there exists a polynomial-time computable function <span class="math inline">f: \{0,1\}^* \rightarrow \{0,1\}^*</span> such that <span class="math inline">x \in L_1</span> if and only if <span class="math inline">f(x) \in L_2</span></p>
+<h3 id="p">P</h3>
+<p>This is the class of problems that are solvable in polynomial time ($O(n^k)) for a constant <span class="math inline">k</span> and <span class="math inline">n</span> is the size of the input). This is more formally defined <a href="np-poly.html">here</a>.</p>
+<h3 id="verification-algorithm"><a href="np-polyver.html">Verification Algorithm</a></h3>
+<p>A two argument algorithm that takes in a string and a certificate, and we say the algorithm <em>verifies</em> the string if there exists a certificate that makes it true. (<span class="math inline">A</span>(graph, graph has some property) is 1 if the graph has that property and 0 otherwise (or it could go on forever...?))</p>
+<h3 id="np">NP</h3>
+<p>This is the class of problems <em>verifiable</em> in polynomial time. Suppose we are given an input <span class="math inline">I</span> and a possible solution <span class="math inline">S</span>. We'll call <span class="math inline">S</span> the <em>certificate</em>. The problem is NP if we can check if the certificate is correct in polynomial time with respect to the size of the input <span class="math inline">I</span> (so it runs in <span class="math inline">O(|I|^k)</span>).</p>
+<h3 id="np-hard">NP-hard</h3>
+<p>A language <span class="math inline">L</span> that satisfies property 2, but not necessarily 1 is considered NP-hard</p>
+<h3 id="npc">NPC</h3>
+<p>[Informally] These are problems in NP and are as &quot;hard&quot; as any problem in NP.</p>
+<p>[Formally] A language <span class="math inline">L \subseteq \{0,1\}^*</span> is NP-complete if</p>
+<ol type="1">
+<li><span class="math inline">L \in NP</span></li>
+<li><span class="math inline">L&#39; \leq_p L \ \forall \ L&#39; \in NP</span></li>
+</ol>
+<hr />
+<p>We can cast an optimization problem as a decision problem by adding a bound on the value we are optimizing. If an optimization problem is easy, then its related decision problem is also easy, and if a decision problem is hard, then so is the optimization problem.</p>
+<p><span class="math inline">P \subseteq NP</span>. This is because the verification step can just be solving the problem. The big question is whether <span class="math inline">P \subset NP</span> or <span class="math inline">P = NP</span></p>
+<p>If <em>any</em> NPC problem can be solved in polynomial time, then <em>every</em> problem in <span class="math inline">NP</span> has a polynomial time algorithm.</p>
       <div class="flex pa4">
               <a href="dijkstra.html" class="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
           <svg class="w1" data-icon="chevronLeft" viewBox="0 0 32 32" style="fill:currentcolor">

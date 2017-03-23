@@ -32,50 +32,56 @@
           </ul>
         </nav>
               </header>
-      <h1 id="interval-coloring">Interval Coloring</h1>
-      <h2 id="interval-coloring-1">Interval Coloring</h2>
-      <p><a href="http://www.cs.toronto.edu/~denisp/csc373/docs/borodin-interval-coloring.pdf">Slides</a> for the interval coloring problem</p>
-      <p>Given a set of intervals, color all intervals so that intervals having the same colors do not intersect.</p>
-      <p>Goal: Minimize the number of colors used.</p>
-      <h2 id="machine-minimization">Machine Minimization</h2>
-      <p>We augment the interval coloring problem so that instead of getting the minimum<br />
-      number of colors, we try to find the minimum number of machines so that intervals<br />
-      running on the $ i $th machine do not intersect (each machine gets non-intersecting processes).</p>
-      <h4 id="input">Input:</h4>
-      <p>An array $ A $ of $ n 1 $ intervals.</p>
-      <h4 id="output">Output:</h4>
-      <p>$ d  $ so that all intervals running on</p>
-      <p><strong>Def</strong>: $ (A) $ is called the depth of $ A $, and is the maximum number of<br />
-      intervals over one point in the timeline</p>
-      <pre><code>|-------||=-----||------|
-          |-----=---|------|
-            |---=|
-                ^ depth of 3</code></pre>
-      <p>We claim that the <span class="math inline">d</span> we will return satisfies</p>
-      <p><span class="math display">\displaystyle 
-      d \geq \text{depth}(A)
-      </span></p>
-      <p>Surprisingly, $ (A) = d $. This is achieved by the greedy algorithm we will<br />
-      display below.</p>
-      <pre><code>// javascript
-      function machineNumber(A, n) {
-        A.sort( (s1,s2) =&gt; s1.start - s2.start )
-        let M = [] // should have size n
-        M[1] = 1
-        for (let i = 2; i &lt; n; i++) {
-          let S = []
-          for (let j = 1; j &lt; i - 1; j++) {
-            if (overlap(A[j], A[i])) {
-              S.push(M[j])
-            }
-          }
-          const minS = Math.min.apply(S)
-          // smallest natural number not in S, assuming N = 1,2,...
-          const min = minS &lt; 2 : 1 ? minS--
-          M[i] = min
-        }
-        return Math.max.apply(M)
-      }</code></pre>
+            <ul>
+      <li><a href="#interval-coloring">Interval Coloring</a><ul>
+      <li><a href="#interval-coloring-1">Interval Coloring</a></li>
+      <li><a href="#machine-minimization">Machine Minimization</a></li>
+      </ul></li>
+      </ul>
+            <h1 id="interval-coloring">Interval Coloring</h1>
+<h2 id="interval-coloring-1">Interval Coloring</h2>
+<p><a href="http://www.cs.toronto.edu/~denisp/csc373/docs/borodin-interval-coloring.pdf">Slides</a> for the interval coloring problem</p>
+<p>Given a set of intervals, color all intervals so that intervals having the same colors do not intersect.</p>
+<p>Goal: Minimize the number of colors used.</p>
+<h2 id="machine-minimization">Machine Minimization</h2>
+<p>We augment the interval coloring problem so that instead of getting the minimum<br />
+number of colors, we try to find the minimum number of machines so that intervals<br />
+running on the $ i $th machine do not intersect (each machine gets non-intersecting processes).</p>
+<h4 id="input">Input:</h4>
+<p>An array $ A $ of $ n 1 $ intervals.</p>
+<h4 id="output">Output:</h4>
+<p>$ d  $ so that all intervals running on</p>
+<p><strong>Def</strong>: $ (A) $ is called the depth of $ A $, and is the maximum number of<br />
+intervals over one point in the timeline</p>
+<pre><code>|-------||=-----||------|
+    |-----=---|------|
+      |---=|
+          ^ depth of 3</code></pre>
+<p>We claim that the <span class="math inline">d</span> we will return satisfies</p>
+<p><span class="math display">\displaystyle 
+d \geq \text{depth}(A)
+</span></p>
+<p>Surprisingly, $ (A) = d $. This is achieved by the greedy algorithm we will<br />
+display below.</p>
+<pre><code>// javascript
+function machineNumber(A, n) {
+  A.sort( (s1,s2) =&gt; s1.start - s2.start )
+  let M = [] // should have size n
+  M[1] = 1
+  for (let i = 2; i &lt; n; i++) {
+    let S = []
+    for (let j = 1; j &lt; i - 1; j++) {
+      if (overlap(A[j], A[i])) {
+        S.push(M[j])
+      }
+    }
+    const minS = Math.min.apply(S)
+    // smallest natural number not in S, assuming N = 1,2,...
+    const min = minS &lt; 2 : 1 ? minS--
+    M[i] = min
+  }
+  return Math.max.apply(M)
+}</code></pre>
       <div class="flex pa4">
                    </div>
           </div>   

@@ -32,36 +32,45 @@
           </ul>
         </nav>
               </header>
-      <h1 id="search-problems">Search Problems</h1>
-      <p>Most of the algorithms we've studied have an exponential number of possible solutions (matching <span class="math inline">n</span> pairs is factorial in size, <span class="math inline">n</span> vertices has <span class="math inline">n^{n-2}</span> spanning trees), but we've taken advantage of structure and assumptions to eliminate large classes of potential solutions, giving us polynomial time algorithms in the worst case. We'll look at some problems that we have yet to solve in efficient time.</p>
-      <p>But first, let's define some things:</p>
-      <h3 id="search-problem">Search Problem</h3>
-      <p>A search problem is specified by an algorithm <span class="math inline">C</span> that takes two inputs:</p>
-      <ul>
-      <li>An <em>instance</em> <span class="math inline">I</span> and a proposed <em>solution</em> <span class="math inline">S</span>.</li>
-      <li><span class="math inline">C</span> runs in time polynomial to <span class="math inline">|I|</span>.</li>
+            <ul>
+      <li><a href="#search-problems">Search Problems</a><ul>
+      <li><a href="#search-problem">Search Problem</a></li>
+      <li><a href="#satisfiability">Satisfiability</a><ul>
+      <li><a href="#horn-and-2sat">Horn and 2SAT</a></li>
+      </ul></li>
+      <li><a href="#traveling-salesman">Traveling Salesman</a></li>
+      </ul></li>
       </ul>
-      <p>We say <span class="math inline">S</span> is a solution to <span class="math inline">I</span> iff <span class="math inline">C(I,S) =</span> <code>true</code></p>
-      <h2 id="satisfiability">Satisfiability</h2>
-      <p>Satisfiability (<code>SAT</code>) has a boolean formula in CNF as its <em>instance</em>. A <em>solution</em> to the instance is a boolean assignment function that takes each variable <span class="math inline">v_i</span> to <code>true</code> or <code>false</code>. The <code>SAT</code> problem is the following</p>
-      <blockquote>
-      <p>Given a Boolean formula in CNF, either find a satisfying truth assignment or report that none exists.</p>
-      </blockquote>
-      <h3 id="horn-and-2sat">Horn and 2SAT</h3>
-      <p>A <strong>Horn Formula</strong> is a boolean formula where all clauses contain at most one positive literal, and a greedy algorithm can be used to find the satisfying truth assignment.</p>
-      <p>If we allow two literals, then we can use graph theory, and <code>SAT</code> can be solved in linear time (DPV excersize 3.28).</p>
-      <p>If we allow three literals, we have no fast solution 😢. Thi is called the <code>3SAT</code> problem.</p>
-      <h2 id="traveling-salesman">Traveling Salesman</h2>
-      <p>This (quite famous) problem gives use <span class="math inline">n</span> vertices with <span class="math inline">\frac{n(n-1)}{2}</span> distances between them, and a budget <span class="math inline">b</span>, and we are asked to solve for a permutation <span class="math inline">\pi</span> of the vertices such that</p>
-      <p><span class="math display">\displaystyle 
-      \sum_{i=1}^n d_{\pi(i), \pi(i+1\mod n-1)} \leq b
-      </span></p>
-      <p>TSP is a <em>search problem</em>:</p>
-      <ul>
-      <li>Instance: The vertices, distances, and budget</li>
-      <li>Solution: the permutation <span class="math inline">\pi</span> (or nothing)</li>
-      </ul>
-      <p>The problem here is finding the <em>optimum</em> solution. If we are given a solution <span class="math inline">S</span> to an instance <span class="math inline">I</span>, how do we know if <span class="math inline">S</span> is the best solution?</p>
+            <h1 id="search-problems">Search Problems</h1>
+<p>Most of the algorithms we've studied have an exponential number of possible solutions (matching <span class="math inline">n</span> pairs is factorial in size, <span class="math inline">n</span> vertices has <span class="math inline">n^{n-2}</span> spanning trees), but we've taken advantage of structure and assumptions to eliminate large classes of potential solutions, giving us polynomial time algorithms in the worst case. We'll look at some problems that we have yet to solve in efficient time.</p>
+<p>But first, let's define some things:</p>
+<h3 id="search-problem">Search Problem</h3>
+<p>A search problem is specified by an algorithm <span class="math inline">C</span> that takes two inputs:</p>
+<ul>
+<li>An <em>instance</em> <span class="math inline">I</span> and a proposed <em>solution</em> <span class="math inline">S</span>.</li>
+<li><span class="math inline">C</span> runs in time polynomial to <span class="math inline">|I|</span>.</li>
+</ul>
+<p>We say <span class="math inline">S</span> is a solution to <span class="math inline">I</span> iff <span class="math inline">C(I,S) =</span> <code>true</code></p>
+<h2 id="satisfiability">Satisfiability</h2>
+<p>Satisfiability (<code>SAT</code>) has a boolean formula in CNF as its <em>instance</em>. A <em>solution</em> to the instance is a boolean assignment function that takes each variable <span class="math inline">v_i</span> to <code>true</code> or <code>false</code>. The <code>SAT</code> problem is the following</p>
+<blockquote>
+<p>Given a Boolean formula in CNF, either find a satisfying truth assignment or report that none exists.</p>
+</blockquote>
+<h3 id="horn-and-2sat">Horn and 2SAT</h3>
+<p>A <strong>Horn Formula</strong> is a boolean formula where all clauses contain at most one positive literal, and a greedy algorithm can be used to find the satisfying truth assignment.</p>
+<p>If we allow two literals, then we can use graph theory, and <code>SAT</code> can be solved in linear time (DPV excersize 3.28).</p>
+<p>If we allow three literals, we have no fast solution 😢. Thi is called the <code>3SAT</code> problem.</p>
+<h2 id="traveling-salesman">Traveling Salesman</h2>
+<p>This (quite famous) problem gives use <span class="math inline">n</span> vertices with <span class="math inline">\frac{n(n-1)}{2}</span> distances between them, and a budget <span class="math inline">b</span>, and we are asked to solve for a permutation <span class="math inline">\pi</span> of the vertices such that</p>
+<p><span class="math display">\displaystyle 
+\sum_{i=1}^n d_{\pi(i), \pi(i+1\mod n-1)} \leq b
+</span></p>
+<p>TSP is a <em>search problem</em>:</p>
+<ul>
+<li>Instance: The vertices, distances, and budget</li>
+<li>Solution: the permutation <span class="math inline">\pi</span> (or nothing)</li>
+</ul>
+<p>The problem here is finding the <em>optimum</em> solution. If we are given a solution <span class="math inline">S</span> to an instance <span class="math inline">I</span>, how do we know if <span class="math inline">S</span> is the best solution?</p>
       <div class="flex pa4">
                    </div>
           </div>   

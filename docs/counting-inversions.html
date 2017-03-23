@@ -25,32 +25,35 @@
           </ul>
         </nav>
               </header>
-      <h1 id="counting-inversions">Counting Inversions</h1>
-      <p><em><strong>Inversion Count</strong></em></p>
-      <p>for an array indicates – how far (or close) the array is from being sorted. If array is already sorted then inversion count is 0. If array is sorted in reverse order that inversion count is the maximum. </p>
-      <p>Def: An array of n ints (i, j) is an inversion if</p>
-      <ul>
-      <li>i &lt; j</li>
-      <li>A[i] &gt; A[j]</li>
+            <ul>
+      <li><a href="#counting-inversions">Counting Inversions</a></li>
       </ul>
-      <p>Input: A array of n ints</p>
-      <p>Output: # of inversions of A</p>
-      <p>Trivial algo: Consider all pairs O(n^2) time</p>
-      <pre><code>public int countInversionBrute(int[] A){
-          int inversions = 0;
-          for (int i = 0; i &lt; A.length - 1; i++){
-              for (int j = i + 1; j &lt; A.length; j++){
-                  if (A[i] &gt; A[j]){
-                      inversions++;
-                  }
-              }
-          }
-          return inversions;
-      }</code></pre>
-      <p><strong>Divide and Conquer:</strong></p>
-      <p>Key Idea: Sort and count</p>
-      <p>Suppose we know the number of inversions in the left half and right half of the array (let be inv1 and inv2), what kinds of inversions are not accounted for in Inv1 + Inv2? The answer is – the inversions we have to count during the merge step. Therefore, to get number of inversions, we need to add number of inversions in left subarray, right subarray and merge().</p>
-      <p>Runtime is O(nlogn)</p>
+            <h1 id="counting-inversions">Counting Inversions</h1>
+<p><em><strong>Inversion Count</strong></em></p>
+<p>for an array indicates – how far (or close) the array is from being sorted. If array is already sorted then inversion count is 0. If array is sorted in reverse order that inversion count is the maximum. </p>
+<p>Def: An array of n ints (i, j) is an inversion if</p>
+<ul>
+<li>i &lt; j</li>
+<li>A[i] &gt; A[j]</li>
+</ul>
+<p>Input: A array of n ints</p>
+<p>Output: # of inversions of A</p>
+<p>Trivial algo: Consider all pairs O(n^2) time</p>
+<pre><code>public int countInversionBrute(int[] A){
+    int inversions = 0;
+    for (int i = 0; i &lt; A.length - 1; i++){
+        for (int j = i + 1; j &lt; A.length; j++){
+            if (A[i] &gt; A[j]){
+                inversions++;
+            }
+        }
+    }
+    return inversions;
+}</code></pre>
+<p><strong>Divide and Conquer:</strong></p>
+<p>Key Idea: Sort and count</p>
+<p>Suppose we know the number of inversions in the left half and right half of the array (let be inv1 and inv2), what kinds of inversions are not accounted for in Inv1 + Inv2? The answer is – the inversions we have to count during the merge step. Therefore, to get number of inversions, we need to add number of inversions in left subarray, right subarray and merge().</p>
+<p>Runtime is O(nlogn)</p>
       <div class="flex pa4">
                    </div>
           </div>   

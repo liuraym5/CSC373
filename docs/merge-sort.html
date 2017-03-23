@@ -32,32 +32,35 @@
           </ul>
         </nav>
               </header>
-      <h2 id="merge-sort">Merge Sort</h2>
-      <p>a) <strong>Divide</strong> the n-element sequence into two sorted sequence of sizes n/2 each</p>
-      <p>b) <strong>Conquer</strong> by sorting the two subsequences recursively with mergesort</p>
-      <p>c) <strong>Combine</strong> by merging the two subsequences together to produce final sorted sequence</p>
-      <p>A is an array, p, q, r are indices to the array such that <span class="math display">\displaystyle p \leq q \lt r</span></p>
-      <pre><code>public merge(A, p, q, r){
-          int n1 = q - p + 1;
-          int n2 = r - q;
-          int[] l = new int[n1];
-          int[] r = new int[n2];
-          for (int i = 0; i &lt; n1; i++){
-              l[i] = A[i];
-          }
-          for (int j = 0; j &lt; n2; j++){
-              r[j] = A[q + j];
-          }
-      
-      }</code></pre>
-      <pre><code>public mergeSort(A, p, r){
-          if (p &lt; r){
-              q = Math.floor((p + r)/ 2);
-              mergeSort(A, p, q);
-              mergeSort(A, q + 1, r);
-              merge(A, p, q, r);
-          }
-      }</code></pre>
+            <ul>
+      <li><a href="#merge-sort">Merge Sort</a></li>
+      </ul>
+            <h2 id="merge-sort">Merge Sort</h2>
+<p>a) <strong>Divide</strong> the n-element sequence into two sorted sequence of sizes n/2 each</p>
+<p>b) <strong>Conquer</strong> by sorting the two subsequences recursively with mergesort</p>
+<p>c) <strong>Combine</strong> by merging the two subsequences together to produce final sorted sequence</p>
+<p>A is an array, p, q, r are indices to the array such that <span class="math display">\displaystyle p \leq q \lt r</span></p>
+<pre><code>public merge(A, p, q, r){
+    int n1 = q - p + 1;
+    int n2 = r - q;
+    int[] l = new int[n1];
+    int[] r = new int[n2];
+    for (int i = 0; i &lt; n1; i++){
+        l[i] = A[i];
+    }
+    for (int j = 0; j &lt; n2; j++){
+        r[j] = A[q + j];
+    }
+
+}</code></pre>
+<pre><code>public mergeSort(A, p, r){
+    if (p &lt; r){
+        q = Math.floor((p + r)/ 2);
+        mergeSort(A, p, q);
+        mergeSort(A, q + 1, r);
+        merge(A, p, q, r);
+    }
+}</code></pre>
       <div class="flex pa4">
                    </div>
           </div>   

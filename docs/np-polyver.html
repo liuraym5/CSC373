@@ -32,59 +32,66 @@
           </ul>
         </nav>
               </header>
-      <h1 id="polynomial-time-verification">Polynomial-time Verification</h1>
-      <p>Let's start looking at algorithms that verify membership in languages.</p>
-      <h2 id="hamiltonian-cycles">Hamiltonian Cycles</h2>
-      <p>A <em>Hamiltonian cycle</em> of an undirected graph <span class="math inline">G=(V,E)</span> is a simple cycle that contains each vertex in <span class="math inline">V</span>. We say a graph is <em>Hamiltonian</em> if it contains a Hamiltonian cycle.</p>
-      <p>Let's define the language for our problem &quot;Does a graph <span class="math inline">G</span> have a Hamiltonian cycle?&quot;</p>
-      <blockquote>
-      <p><span class="math inline">\mathcal L_{HAM-CYCLE} = \{ \langle G \rangle : G</span> is a Hamiltonian graph <span class="math inline">\}</span></p>
-      </blockquote>
-      <p>If the graph has <span class="math inline">m</span> vertices, then there are <span class="math inline">m!</span> permutations, giving a runtime of <span class="math inline">\Omega(m!)</span>. Let <span class="math inline">n</span> be the size of the graph. Then a reasonable encoding is <span class="math inline">\Omega(\sqrt{n})</span>.</p>
-      <p><span class="math display">\displaystyle 
-      \Omega(m!) = \Omega(\sqrt{n!}) = \Omega(2^{\sqrt{n}})
-      </span></p>
-      <p>That's clearly not in polynomial time.</p>
-      <p>However, we can <em>verify</em> if a proposed solution <span class="math inline">S=(V&#39;,E&#39;)</span> is Hamiltonian in polynomial time: just check if <span class="math inline">V&#39;</span> is a permutation of <span class="math inline">V</span> and that the edges in <span class="math inline">E&#39;</span> exist in <span class="math inline">E</span>. This can be implemented in <span class="math inline">O(n^2)</span>.</p>
-      <h2 id="verification-algorithm">Verification Algorithm</h2>
-      <p>Let <span class="math inline">A</span> be a verification algorithm. We define <span class="math inline">A</span> as follows:</p>
-      <ul>
-      <li><span class="math inline">A</span> takes two argument:
-      <ul>
-      <li>A string <span class="math inline">x</span></li>
-      <li>A binary string <span class="math inline">y</span> (called the <em>certificate</em>)</li>
+            <ul>
+      <li><a href="#polynomial-time-verification">Polynomial-time Verification</a><ul>
+      <li><a href="#hamiltonian-cycles">Hamiltonian Cycles</a></li>
+      <li><a href="#verification-algorithm">Verification Algorithm</a></li>
+      <li><a href="#np"><span class="math inline">NP</span></a></li>
       </ul></li>
       </ul>
-      <p>We say <span class="math inline">A</span> <strong>verifies an input string</strong> <span class="math inline">x</span> if there exists a certificate <span class="math inline">y</span> such that <span class="math inline">A(x,y) = 1</span>.</p>
-      <p>We can now look at the <strong>language verified by</strong> <span class="math inline">A</span></p>
-      <p><span class="math display">\displaystyle 
-      L = \{x \in \{0,1\}^* | \ \exists\ y \in \{0,1\}^* : A(x,y) = 1 \}
-      </span></p>
-      <p>We can now define the complexity class <span class="math inline">NP</span> in a really nice way:</p>
-      <h2 id="np"><span class="math inline">NP</span></h2>
-      <p>A language <span class="math inline">L</span> is in <span class="math inline">NP</span> if:</p>
-      <p><span class="math display">\displaystyle 
-      L = \{x \in \{0,1\}^* | \ \exists\ y \in \{0,1\}^*, |y| = O(|x|^c) : A(x,y) = 1 \}
-      </span></p>
-      <p>In words, a language <span class="math inline">L</span> is in <span class="math display">\displaystyle NP</span> if there exists a verification algorithm <span class="math inline">A</span> that verifies <span class="math inline">L</span> in polynomial time. So <span class="math inline">L_{HAM-CYCLE}</span> from before is in <span class="math inline">NP</span>!</p>
-      <p>So P is the set of problems that can be solved quickly, and <span class="math inline">NP</span> are those that can be verified quickly (so <span class="math inline">P \subseteq NP</span>, because if it can be solved quickly, then it can be verified by solving it).</p>
-      <pre><code>
-        NP-HARD
-      --       --
-       |  NPC  |
-      -|-------|-
-       |  NP   |
-      -||-----||-
-        |  P  |
-      --|-----|--
-      P != NP</code></pre>
-      <pre><code>
-      |           | 
-      | NP-HARD   |
-      |           |
-      | --------- |
-      | P=NP=NPC  |
-      P = NP</code></pre>
+            <h1 id="polynomial-time-verification">Polynomial-time Verification</h1>
+<p>Let's start looking at algorithms that verify membership in languages.</p>
+<h2 id="hamiltonian-cycles">Hamiltonian Cycles</h2>
+<p>A <em>Hamiltonian cycle</em> of an undirected graph <span class="math inline">G=(V,E)</span> is a simple cycle that contains each vertex in <span class="math inline">V</span>. We say a graph is <em>Hamiltonian</em> if it contains a Hamiltonian cycle.</p>
+<p>Let's define the language for our problem &quot;Does a graph <span class="math inline">G</span> have a Hamiltonian cycle?&quot;</p>
+<blockquote>
+<p><span class="math inline">\mathcal L_{HAM-CYCLE} = \{ \langle G \rangle : G</span> is a Hamiltonian graph <span class="math inline">\}</span></p>
+</blockquote>
+<p>If the graph has <span class="math inline">m</span> vertices, then there are <span class="math inline">m!</span> permutations, giving a runtime of <span class="math inline">\Omega(m!)</span>. Let <span class="math inline">n</span> be the size of the graph. Then a reasonable encoding is <span class="math inline">\Omega(\sqrt{n})</span>.</p>
+<p><span class="math display">\displaystyle 
+\Omega(m!) = \Omega(\sqrt{n!}) = \Omega(2^{\sqrt{n}})
+</span></p>
+<p>That's clearly not in polynomial time.</p>
+<p>However, we can <em>verify</em> if a proposed solution <span class="math inline">S=(V&#39;,E&#39;)</span> is Hamiltonian in polynomial time: just check if <span class="math inline">V&#39;</span> is a permutation of <span class="math inline">V</span> and that the edges in <span class="math inline">E&#39;</span> exist in <span class="math inline">E</span>. This can be implemented in <span class="math inline">O(n^2)</span>.</p>
+<h2 id="verification-algorithm">Verification Algorithm</h2>
+<p>Let <span class="math inline">A</span> be a verification algorithm. We define <span class="math inline">A</span> as follows:</p>
+<ul>
+<li><span class="math inline">A</span> takes two argument:
+<ul>
+<li>A string <span class="math inline">x</span></li>
+<li>A binary string <span class="math inline">y</span> (called the <em>certificate</em>)</li>
+</ul></li>
+</ul>
+<p>We say <span class="math inline">A</span> <strong>verifies an input string</strong> <span class="math inline">x</span> if there exists a certificate <span class="math inline">y</span> such that <span class="math inline">A(x,y) = 1</span>.</p>
+<p>We can now look at the <strong>language verified by</strong> <span class="math inline">A</span></p>
+<p><span class="math display">\displaystyle 
+L = \{x \in \{0,1\}^* | \ \exists\ y \in \{0,1\}^* : A(x,y) = 1 \}
+</span></p>
+<p>We can now define the complexity class <span class="math inline">NP</span> in a really nice way:</p>
+<h2 id="np"><span class="math inline">NP</span></h2>
+<p>A language <span class="math inline">L</span> is in <span class="math inline">NP</span> if:</p>
+<p><span class="math display">\displaystyle 
+L = \{x \in \{0,1\}^* | \ \exists\ y \in \{0,1\}^*, |y| = O(|x|^c) : A(x,y) = 1 \}
+</span></p>
+<p>In words, a language <span class="math inline">L</span> is in <span class="math display">\displaystyle NP</span> if there exists a verification algorithm <span class="math inline">A</span> that verifies <span class="math inline">L</span> in polynomial time. So <span class="math inline">L_{HAM-CYCLE}</span> from before is in <span class="math inline">NP</span>!</p>
+<p>So P is the set of problems that can be solved quickly, and <span class="math inline">NP</span> are those that can be verified quickly (so <span class="math inline">P \subseteq NP</span>, because if it can be solved quickly, then it can be verified by solving it).</p>
+<pre><code>
+  NP-HARD
+--       --
+ |  NPC  |
+-|-------|-
+ |  NP   |
+-||-----||-
+  |  P  |
+--|-----|--
+P != NP</code></pre>
+<pre><code>
+|           | 
+| NP-HARD   |
+|           |
+| --------- |
+| P=NP=NPC  |
+P = NP</code></pre>
       <div class="flex pa4">
               <a href="np-poly.html" class="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
           <svg class="w1" data-icon="chevronLeft" viewBox="0 0 32 32" style="fill:currentcolor">
