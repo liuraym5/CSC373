@@ -43,6 +43,13 @@ This is the class of problems that are solvable in polynomial time ($O(n^k)) for
 a constant $k$ and $n$ is the size of the input). This is more formally defined
 [here](np-poly.html).
 
+### [Verification Algorithm](np-polyver.html)
+
+A two argument algorithm that takes in a string and a certificate, and we say
+the algorithm _verifies_ the string if there exists a certificate that makes it
+true. ($A$(graph, graph has some property) is 1 if the graph has that property
+and 0 otherwise (or it could go on forever...?))
+
 ### NP
 
 This is the class of problems _verifiable_ in polynomial time. Suppose we are
@@ -57,10 +64,6 @@ A language $L$ that satisfies property 2, but not necessarily 1 is considered
 NP-hard
 
 
-We can cast an optimization problem as a decision problem by adding a bound on
-the value we are optimizing. If an optimization problem is easy, then its
-related decision problem is also easy, and if a decision problem is hard, then
-so is the optimization problem.
 
 ### NPC
 
@@ -72,6 +75,11 @@ so is the optimization problem.
 2. $L' \leq_p L \ \forall \ L' \in NP$
 
 ---
+
+We can cast an optimization problem as a decision problem by adding a bound on
+the value we are optimizing. If an optimization problem is easy, then its
+related decision problem is also easy, and if a decision problem is hard, then
+so is the optimization problem.
 
 $P \subseteq NP$. This is because the verification step can just be solving the
 problem. The big question is whether $P \subset NP$ or $P = NP$
